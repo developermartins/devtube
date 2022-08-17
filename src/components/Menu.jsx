@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 const Menu = () => {
   return (
-    <Container>Menu</Container>
+    <Container>
+        <Wrapper>
+            items
+        </Wrapper>
+    </Container>
   );
 };
 
@@ -12,6 +16,10 @@ const Container = styled.section`
     background-color: #202020;
     height: 100vh;
     color: white;
+`;
+
+const Wrapper = styled.section`
+    padding: 18px 26px;
 `;
 
 export default Menu;
