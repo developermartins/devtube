@@ -1,19 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 const Card = () => {
   return (
-    <Container>
-        <Image src="https://i.ytimg.com/vi/6hdMspVzslY/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAbkbl0oQ3eNRQt32vqHSc8156DbQ" />
-        <Details>
-            <ChannelImage src="" />
-            <Texts>
-                <Title>Test Video</Title>
-                <ChannelName>MartsDev</ChannelName>
-                <Info>31.139 visualizações • 30 de jun. de 2022</Info>
-            </Texts>
-        </Details>
-    </Container>
+    <Link to="/video/test" style={{ textDecoration: 'none' }}>
+        <Container>
+            <Image src="https://i.ytimg.com/vi/6hdMspVzslY/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAbkbl0oQ3eNRQt32vqHSc8156DbQ" />
+            <Details>
+                <ChannelImage src="https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj" />
+                <Texts>
+                    <Title>Test Video</Title>
+                    <ChannelName>MartsDev</ChannelName>
+                    <Info>31.139 visualizações • 30 de jun. de 2022</Info>
+                </Texts>
+            </Details>
+        </Container>
+    </Link>
   );
 };
 
