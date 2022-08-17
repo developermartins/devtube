@@ -22,9 +22,9 @@ const App = () => {
             <Wrapper>
               <Routes>
                 <Route path='/'>
-                  <Route index element={ Home } />
+                  <Route index element={ <Home /> } />
                   <Route path='video'>
-                    <Route path=':id' element={ Video } />
+                    <Route path=':id' element={ <Video /> } />
                   </Route>
                 </Route>
               </Routes>
