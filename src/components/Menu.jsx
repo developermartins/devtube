@@ -20,7 +20,7 @@ import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightne
 
 import { Link } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
         <Wrapper>
@@ -97,8 +97,9 @@ const Menu = () => {
                 <HelpOutlineOutlinedIcon />
                 Help
             </Item>
-            <Item>
+            <Item onClick={() => setDarkMode(!darkMode)}>
                 <SettingsBrightnessOutlinedIcon />
+                { darkMode ? 'Light Mode' : 'Dark Mode' }
             </Item>
         </Wrapper>
     </Container>
@@ -107,9 +108,9 @@ const Menu = () => {
 
 const Container = styled.section`
     flex: 1;
-    background-color: #202020;
+    background-color: ${ ({theme}) => theme.bg };
     height: 100vh;
-    color: white;
+    color: ${ ({theme}) => theme.text };
     font-size: 14px;
     position: sticky;
     top: 0;
@@ -141,7 +142,7 @@ const Item = styled.div`
 
 const Hr = styled.hr`
     margin: 15px 0;
-    border: 0.5px solid #373737;
+    border: 0.5px solid ${({theme}) => theme.soft};
 `;
 
 const Login = styled.div`
