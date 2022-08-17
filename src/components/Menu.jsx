@@ -59,7 +59,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
                 </Button>
             </Login>
             <Hr />
-            <Title>BEST OF LAMATUBE</Title>
+            <Title>BEST OF MARTSTUBE</Title>
             <Item>
                 <LibraryMusicOutlinedIcon />
                 Music
@@ -108,7 +108,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
 
 const Container = styled.section`
     flex: 1;
-    background-color: ${ ({theme}) => theme.bg };
+    background-color: ${ ({theme}) => theme.bgLighter };
     height: 100vh;
     color: ${ ({theme}) => theme.text };
     font-size: 14px;
@@ -163,6 +163,11 @@ const Button = styled.button`
     gap: 5;
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+    font-size: 14px;
+    font-weight: 500;
+    color: #aaaaaa;
+    margin-bottom: 20px;
+`;
 
 export default Menu;
