@@ -32,6 +32,7 @@ const Image = styled.img`
     width: 100%;
     height: 202px;
     background-color: #999;
+    border-radius: 5px;
 `;
 
 const Details = styled.section`

@@ -48,6 +48,7 @@ const Search = styled.div`
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    color: ${({theme}) => theme.text};
 `;
 
 const Input = styled.input`
@@ -55,6 +56,7 @@ const Input = styled.input`
     background-color: transparent;
     width: 100%;
     outline: 0;
+    color: ${({theme}) => theme.text};
 `;
 
 const Button = styled.button`
