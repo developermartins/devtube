@@ -18,11 +18,11 @@ const App = () => {
 };
 
 const Container = styled.section`
-
+  display: flex;
 `;
 
 const Main = styled.section`
-
+  flex: 7;
 `;
 
 const Wrapper = styled.section`
