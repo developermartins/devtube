@@ -10,6 +10,9 @@ const Menu = () => {
                 <Img src={ MartsTube } />
                 MartsTube
             </Logo>
+            <Item>
+                Menu
+            </Item>
         </Wrapper>
     </Container>
   );
@@ -20,6 +23,7 @@ const Container = styled.section`
     background-color: #202020;
     height: 100vh;
     color: white;
+    font-size: 14px;
 `;
 
 const Wrapper = styled.section`
@@ -36,6 +40,13 @@ const Logo = styled.div`
 
 const Img = styled.img`
     height: 25px;
+`;
+
+const Item = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
 `;
 
 export default Menu;
