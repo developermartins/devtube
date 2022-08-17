@@ -46,7 +46,7 @@ const Main = styled.section`
 `;
 
 const Wrapper = styled.section`
-
+  padding: 22px, 96px;
 `;
 
 export default App;
