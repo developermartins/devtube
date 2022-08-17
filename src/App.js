@@ -23,6 +23,7 @@ const Container = styled.section`
 
 const Main = styled.section`
   flex: 7;
+  background-color: #181818;
 `;
 
 const Wrapper = styled.section`
