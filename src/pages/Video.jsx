@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Card from '../components/Card';
 
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltOutlinedIcon from '@mui/icons-material/ThumbUpOffAltOutlined';
@@ -60,7 +61,16 @@ const Video = () => {
           <Hr />
           <Comments />
         </Content>
-        <Recomendation>recomendation</Recomendation>
+        <Recomendation>
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+        </Recomendation>
     </Container>
   );
 };
