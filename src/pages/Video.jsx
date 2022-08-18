@@ -141,6 +141,7 @@ const SubscribeButon = styled.button`
   height: max-content;
   padding: 10px 20px;
   cursor: pointer;
+  text-transform: uppercase;
 `;
 
 const ChannelImage = styled.img`
