@@ -43,7 +43,17 @@ const Video = () => {
           </Details>
           <Hr />
           <Channel>
-            <ChannelInfo></ChannelInfo>
+            <ChannelInfo>
+              <ChannelImage src='https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj'/>
+              <ChannelDetail>
+                <ChannelName>DevMarts</ChannelName>
+                <ChannelCounter>200k Subscribers</ChannelCounter>
+                <Description>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum massa sit amet porttitor aliquet. 
+                  Sed iaculis ac dolor hendrerit dignissim. Duis a auctor quam. Sed at pretium velit.
+                </Description>
+              </ChannelDetail>
+            </ChannelInfo>
             <SubscribeButon>Subscribe</SubscribeButon>
           </Channel>
         </Content>
@@ -115,21 +125,46 @@ const Channel = styled.section`
 `;
 
 const ChannelInfo = styled.section`
-
+  display: flex;
+  gap: 20px;
 `;
 
 const SubscribeButon = styled.button`
-
+  background-color: #cc1a00;
+  font-weight: 500;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  height: max-content;
+  padding: 10px 20px;
+  cursor: pointer;
 `;
 
-const ChannelImage = styled.img``;
+const ChannelImage = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
 
-const ChannelDetail = styled.div``;
+const ChannelDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  color:  ${({theme}) => theme.text};
+`;
 
-const ChannelName = styled.span``;
+const ChannelName = styled.span`
+  font-weight: 500;
+`;
 
-const ChannelCounter = styled.span``;
+const ChannelCounter = styled.span`
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color:  ${({theme}) => theme.textSoft};
+  font-size: 12px;
+`;
 
-const Description = styled.p``;
+const Description = styled.p`
+  font-size: 14px;
+`;
 
 export default Video;
