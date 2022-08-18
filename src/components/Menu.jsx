@@ -54,11 +54,12 @@ const Menu = ({ darkMode, setDarkMode }) => {
             <Hr />
             <Login>
                 Sign in to like videos, comment, and subscribe.
-            
-                <Button>
-                    <AccountCircleOutlinedIcon />
-                    SIGN IN
-                </Button>
+                <Link to="signin" style={{ textDecoration: "none" }}>
+                    <Button>
+                        <AccountCircleOutlinedIcon />
+                        SIGN IN
+                    </Button>
+                </Link>
             </Login>
             <Hr />
             <Title>BEST OF MARTSTUBE</Title>
