@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import VideoComment from './VideoComment';
 
 const Comments = () => {
   return (
@@ -8,6 +9,10 @@ const Comments = () => {
             <Avatar src='https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj' />
             <Input placeholder='Add a comment...' />
         </NewComment>
+        <VideoComment />
+        <VideoComment />
+        <VideoComment />
+        <VideoComment />
     </Container>
   );
 };
