@@ -42,6 +42,10 @@ const Video = () => {
             </Buttons>
           </Details>
           <Hr />
+          <Channel>
+            <ChannelInfo></ChannelInfo>
+            <SubscribeButon>Subscribe</SubscribeButon>
+          </Channel>
         </Content>
         <Recomendation>recomendation</Recomendation>
     </Container>
@@ -101,9 +105,31 @@ const Hr = styled.hr`
     border: 0.5px solid ${({theme}) => theme.soft};
 `;
 
-
 const Recomendation = styled.section`
     flex: 2;
 `;
+
+const Channel = styled.section`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ChannelInfo = styled.section`
+
+`;
+
+const SubscribeButon = styled.button`
+
+`;
+
+const ChannelImage = styled.img``;
+
+const ChannelDetail = styled.div``;
+
+const ChannelName = styled.span``;
+
+const ChannelCounter = styled.span``;
+
+const Description = styled.p``;
 
 export default Video;
