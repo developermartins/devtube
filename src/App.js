@@ -6,7 +6,9 @@ import Home from './pages/Home';
 
 import { darkTheme, lightTheme } from './utils/theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Video from './pages/Video';
+import Login from './pages/Login';
 
 const App = () => {
 
@@ -23,6 +25,7 @@ const App = () => {
               <Routes>
                 <Route path='/'>
                   <Route index element={ <Home /> } />
+                  <Route path='signin' element={ <Login /> } />
                   <Route path='video'>
                     <Route path=':id' element={ <Video /> } />
                   </Route>
