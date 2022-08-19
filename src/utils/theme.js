@@ -1,4 +1,7 @@
 export const darkTheme = {
+
+    title: "dark",
+
     bg: "#181818",
     bgLighter: "#202020",
     text: "white",
@@ -7,6 +10,9 @@ export const darkTheme = {
 };
 
 export const lightTheme = {
+
+    title: "light",
+
     bg: "#f9f9f9",
     bgLighter: "white",
     text: "black",

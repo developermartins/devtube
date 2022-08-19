@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function usePersistedState(key, initialState) {
-
+    console.log(key, initialState)
     const [state, setState] = useState(() => {
         const storageValue = localStorage.getItem(key);
 
@@ -13,7 +13,7 @@ function usePersistedState(key, initialState) {
     });
 
     useEffect(() => {
-        localStorage.getItem(key, JSON.stringify(state));
+        localStorage.setItem(key, JSON.stringify(state));
     }, [key, state]);
 
     return [state, setState];

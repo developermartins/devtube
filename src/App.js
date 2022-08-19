@@ -9,16 +9,22 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Video from './pages/Video';
 import Login from './pages/Login';
+import usePersistedState from './utils/usePersistedState';
 
 const App = () => {
 
-  const [darkMode, setDarkMode] = useState(true);
+  const [theme, setTheme] = usePersistedState('theme', lightTheme);
+
+  const toggleTheme = () => {
+    console.log(theme.title)
+    setTheme(theme.title === 'light' ? darkTheme : lightTheme);
+  };
 
   return (
-    <ThemeProvider theme={ darkMode ? darkTheme : lightTheme }>
+    <ThemeProvider theme={ theme }>
       <Container>
         <BrowserRouter>
-          <Menu darkMode={ darkMode } setDarkMode={ setDarkMode } />
+          <Menu toggleTheme={ toggleTheme } />
           <Main>
             <Navbar />
             <Wrapper>

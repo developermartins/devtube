@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import MartsTube from '../images/logo.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
@@ -20,7 +20,10 @@ import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightne
 
 import { Link } from 'react-router-dom';
 
-const Menu = ({ darkMode, setDarkMode }) => {
+const Menu = ({ toggleTheme }) => {
+
+    const { title } = useContext(ThemeContext);
+
   return (
     <Container>
         <Wrapper>
@@ -100,9 +103,9 @@ const Menu = ({ darkMode, setDarkMode }) => {
                 <HelpOutlineOutlinedIcon />
                 Help
             </Item>
-            <Item onClick={() => setDarkMode(!darkMode)}>
+            <Item onClick={() => toggleTheme()}>
                 <SettingsBrightnessOutlinedIcon />
-                { darkMode ? 'Light Mode' : 'Dark Mode' }
+                { title === 'light' ? 'Dark Mode'  : 'Light Mode' }
             </Item>
         </Wrapper>
     </Container>
