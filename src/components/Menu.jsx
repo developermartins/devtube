@@ -30,7 +30,7 @@ const Menu = ({ toggleTheme }) => {
             <Link to="/" style={{ textDecoration: "none", color: 'inherit' }}>
                 <Logo>
                     <Img src={ MartsTube } />
-                    MartsTube
+                    DevTube
                 </Logo>
             </Link>
             <Item>
@@ -65,7 +65,7 @@ const Menu = ({ toggleTheme }) => {
                 </Link>
             </Login>
             <Hr />
-            <Title>BEST OF MARTSTUBE</Title>
+            <Title>BEST OF DEVTUBE</Title>
             <Item>
                 <LibraryMusicOutlinedIcon />
                 Music
