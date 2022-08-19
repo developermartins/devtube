@@ -43,6 +43,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     background-color: ${({ theme }) => theme.bgLighter};
     border: 1px solid ${({ theme }) => theme.soft};
+    border-radius: 5px;
     padding: 20px 80px;
     gap: 10px;
 `;
