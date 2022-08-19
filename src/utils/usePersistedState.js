@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function usePersistedState(key, initialState) {
-    console.log(key, initialState)
+
     const [state, setState] = useState(() => {
         const storageValue = localStorage.getItem(key);
 
