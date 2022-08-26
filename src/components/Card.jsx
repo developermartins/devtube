@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
 
 const Card = ({ type, video }) => {
+
+  let infoText = `${video.views} views • ${format(video.createdAt)}`;
+
   return (
     <Link to="/video/test" style={{ textDecoration: 'none' }}>
         <Container type={ type }>
@@ -14,7 +18,7 @@ const Card = ({ type, video }) => {
                     <Title>{ video.title }</Title>
                     <ChannelName>MartsDev</ChannelName>
                     <Info>
-                        {type === "sm" ?  video.views + " visualizações • há 1 mês" :  video.views + " visualizações • 30 de jun. de 2022"}
+                        {infoText}
                     </Info>
                 </Texts>
             </Details>
