@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import Card from '../components/Card';
 import { fetchVideos } from '../services/fetchVideos';
 
-const Home = () => {
+const Home = ({ type }) => {
 
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const callFetchVideos = async () => {
-      const ramdomVideos = await fetchVideos();
+      const ramdomVideos = await fetchVideos(type);
 
       setVideos(ramdomVideos);
     };
     callFetchVideos();
-  }, []);
+  }, [type]);
 
   return (
     <Container>
