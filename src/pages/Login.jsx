@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { login } from '../services/login';
+import { 
+    loginFailure,
+    loginStart,
+    loginSuccess 
+} from '../redux/userSlice';
+
+import styled from 'styled-components';
 
 const Login = () => {
 
@@ -8,18 +15,22 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
+    const dispatch = useDispatch();
+
     const handleSignin = async (e) => {
         e.preventDefault();
+        dispatch(loginStart());
 
         try {
             const userLogin = await login(username, password);
 
-            console.log(userLogin);
+            dispatch(loginSuccess(userLogin));
         } catch (error) {
-            console.log(error.response.data)
-        }
+            dispatch(loginFailure());
+            console.log(error.response.data);
+        };
 
-    }
+    };
 
   return (
     <Container>
