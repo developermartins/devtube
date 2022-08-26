@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
+import { fetchVideos } from '../services/fetchVideos';
 
 const Home = () => {
 
   const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const callFetchVideos = async () => {
+      const ramdomVideos = await fetchVideos();
+    }
+  }, []);
 
   return (
     <Container>
