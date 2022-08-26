@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
 
 const Home = () => {
+
+  const [videos, setVideos] = useState([]);
+
   return (
     <Container>
         <Card />
