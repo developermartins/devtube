@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Login = () => {
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+
+    const handleSignin = (e) => {
+        e.preventDefault();
+
+        try {
+            
+        } catch (error) {
+            
+        }
+
+    }
+
   return (
     <Container>
         <Wrapper>
             <Title>Sign in</Title>
             <SubTitle>to continue to DevMarts</SubTitle>
-            <Input placeholder="username" />
-            <Input type="password" placeholder="password" />
-            <Button>Sing in</Button>
+            <Input placeholder="username" onChange={e=>setUsername(e.target.value)} />
+            <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
+            <Button onClick={handleSignin}>Sing in</Button>
             <Title>or</Title>
-            <Input placeholder="username" />
-            <Input placeholder="email" />
-            <Input type="password" placeholder="password" />
+            <Input placeholder="username" onChange={e=>setUsername(e.target.value)} />
+            <Input placeholder="email" onChange={e=>setEmail(e.target.value)}/>
+            <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)}/>
             <Button>Sing up</Button>
         </Wrapper>
         <More>
