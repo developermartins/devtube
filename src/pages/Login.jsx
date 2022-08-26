@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { login } from '../services/login';
 
 const Login = () => {
 
@@ -7,11 +8,13 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-    const handleSignin = (e) => {
+    const handleSignin = async (e) => {
         e.preventDefault();
 
         try {
-            
+            const userLogin = await login(username, password);
+
+            console.log(userLogin);
         } catch (error) {
             
         }
