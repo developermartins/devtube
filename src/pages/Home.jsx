@@ -10,30 +10,17 @@ const Home = () => {
   useEffect(() => {
     const callFetchVideos = async () => {
       const ramdomVideos = await fetchVideos();
-    }
+
+      setVideos(ramdomVideos);
+    };
+    callFetchVideos();
   }, []);
 
   return (
     <Container>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        { videos.map(() => (
+          <Card />
+        )) }
     </Container>
   );
 };
