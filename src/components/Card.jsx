@@ -1,12 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { format } from 'timeago.js';
 
+import styled from 'styled-components';
+
 const Card = ({ type, video }) => {
 
   let infoText = `${video.views} views • ${format(video.createdAt)}`;
+
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const callFetchVideos = async () => {
+      const ramdomVideos = await fetchVideos(type);
+
+      setVideos(ramdomVideos);
+    };
+    callFetchVideos();
+  }, [type]);
 
   return (
     <Link to="/video/test" style={{ textDecoration: 'none' }}>
