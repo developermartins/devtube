@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { fetchChannelInfo } from '../services/fetchChannelInfo';
 import { Link } from 'react-router-dom';
 import { format } from 'timeago.js';
 
@@ -9,26 +10,26 @@ const Card = ({ type, video }) => {
 
   let infoText = `${video.views} views • ${format(video.createdAt)}`;
 
-  const [videos, setVideos] = useState([]);
+  const [channelInfo, setChannelInfo] = useState({});
 
   useEffect(() => {
-    const callFetchVideos = async () => {
-      const ramdomVideos = await fetchVideos(type);
+    const callFetchChannelInfo = async () => {
+      const channel = await fetchChannelInfo(video.userId);
 
-      setVideos(ramdomVideos);
+      setChannelInfo(channel);
     };
-    callFetchVideos();
-  }, [type]);
+    callFetchChannelInfo();
+  }, [video.userId]);
 
   return (
     <Link to="/video/test" style={{ textDecoration: 'none' }}>
         <Container type={ type }>
             <Image type={ type } src={video.imgUrl} />
             <Details type={ type }>
-                <ChannelImage type={ type } src="https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj" />
+                <ChannelImage type={ type } src={ channelInfo?.img } />
                 <Texts>
                     <Title>{ video.title }</Title>
-                    <ChannelName>MartsDev</ChannelName>
+                    <ChannelName>{ channelInfo.username }</ChannelName>
                     <Info>
                         {infoText}
                     </Info>
