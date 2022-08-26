@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
-const Card = ({ type }) => {
+const Card = ({ type, video }) => {
   return (
     <Link to="/video/test" style={{ textDecoration: 'none' }}>
         <Container type={ type }>
-            <Image type={ type } src="https://i.ytimg.com/vi/6hdMspVzslY/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAbkbl0oQ3eNRQt32vqHSc8156DbQ" />
+            <Image type={ type } src={video.imgUrl} />
             <Details type={ type }>
                 <ChannelImage type={ type } src="https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj" />
                 <Texts>
-                    <Title>Test Video</Title>
+                    <Title>{ video.title }</Title>
                     <ChannelName>MartsDev</ChannelName>
                     <Info>
-                        {type === "sm" ? "31.139 visualizações • há 1 mês" : "31.139 visualizações • 30 de jun. de 2022"}
+                        {type === "sm" ?  video.views + " visualizações • há 1 mês" :  video.views + " visualizações • 30 de jun. de 2022"}
                     </Info>
                 </Texts>
             </Details>
