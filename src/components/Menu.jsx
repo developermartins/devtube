@@ -19,10 +19,13 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Menu = ({ toggleTheme }) => {
 
     const { title } = useContext(ThemeContext);
+
+    const { currentUser } = useSelector(state => state.user);
 
   return (
     <Container>
@@ -59,16 +62,20 @@ const Menu = ({ toggleTheme }) => {
                 History
             </Item>
             <Hr />
-            <Login>
-                Sign in to like videos, comment, and subscribe.
-                <Link to="signin" style={{ textDecoration: "none" }}>
-                    <Button>
-                        <AccountCircleOutlinedIcon />
-                        SIGN IN
-                    </Button>
-                </Link>
-            </Login>
-            <Hr />
+            { !currentUser &&
+                <>
+                    <Login>
+                        Sign in to like videos, comment, and subscribe.
+                        <Link to="signin" style={{ textDecoration: "none" }}>
+                            <Button>
+                                <AccountCircleOutlinedIcon />
+                                SIGN IN
+                            </Button>
+                        </Link>
+                    </Login>
+                    <Hr />
+                </>
+            }
             <Title>BEST OF DEVTUBE</Title>
             <Item>
                 <LibraryMusicOutlinedIcon />
