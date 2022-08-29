@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../services/login';
+import { login, loginWithGoogle } from '../services/login';
 import { 
     loginFailure,
     loginStart,
@@ -34,9 +34,9 @@ const Login = () => {
 
     };
 
-    const signInWithGoogle = () => {
+    const signInWithGoogle = async () => {
         signInWithPopup(auth, provider)
-            .then((result) => console.log(result))
+            .then((result) => loginWithGoogle(result).then((res) => console.log(res)) )
             .catch((error) => {});
     };
 
@@ -49,7 +49,7 @@ const Login = () => {
             <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
             <Button onClick={handleSignin}>Sing in</Button>
             <Title>or</Title>
-            <Button onClick={signInWithGoogle}>Singnin with Google</Button>
+            <Button onClick={signInWithGoogle}>Singn in with Google</Button>
             <Title>or</Title>
             <Input placeholder="username" onChange={e=>setUsername(e.target.value)} />
             <Input placeholder="email" onChange={e=>setEmail(e.target.value)}/>
