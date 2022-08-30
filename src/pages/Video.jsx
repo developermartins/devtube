@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
 
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltOutlinedIcon from '@mui/icons-material/ThumbUpOffAltOutlined';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../components/Comments';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { fetchVideoById } from '../services/fetchVideos';
+
 const Video = () => {
+
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const path = useLocation().pathname.split("/")[2];
+
+  const [video, setVideo] = useState({});
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const videoRes = await fetchVideoById(path);
+  }, []);
+
+
   return (
     <Container>
         <Content>
@@ -61,7 +78,7 @@ const Video = () => {
           <Hr />
           <Comments />
         </Content>
-        <Recomendation>
+        {/* <Recomendation>
           <Card type="sm" />
           <Card type="sm" />
           <Card type="sm" />
@@ -70,7 +87,7 @@ const Video = () => {
           <Card type="sm" />
           <Card type="sm" />
           <Card type="sm" />
-        </Recomendation>
+        </Recomendation> */}
     </Container>
   );
 };

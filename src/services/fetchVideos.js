@@ -5,3 +5,10 @@ export const fetchVideos = async (type) => {
 
     return res.data;
 };
+
+export const fetchVideoById = async (id) => {
+    const res = await axios.get(`/videos/find/${id}`);
+
+    return res.data;
+};
+
