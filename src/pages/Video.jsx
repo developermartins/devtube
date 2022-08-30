@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchVideoById } from '../services/fetchVideos';
 import { fetchChannelInfo } from '../services/fetchChannelInfo';
-import { fetchSuccess } from '../redux/videoSlice';
+import { dislike, fetchSuccess, like } from '../redux/videoSlice';
 import { format } from 'timeago.js';
 
 import styled from 'styled-components';
@@ -42,11 +42,13 @@ const Video = () => {
   }, [path, dispatch]);
 
   const handleLike = async () => {
-    await likeFunction(currentVideo.id);
+    await likeFunction(currentVideo._id);
+    dispatch(like(currentUser.id));
   };
 
   const handleDislike = async () => {
-    await dislikeFunction(currentVideo.id);
+    await dislikeFunction(currentVideo._id);
+    dispatch(dislike(currentUser.id));
   };
 
   return (
