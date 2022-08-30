@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { dislikeFunction, likeFunction } from '../services/userFeedback';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchVideoById } from '../services/fetchVideos';
@@ -40,13 +41,16 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
-  const handleLike = () => {
-
+  const handleLike = async () => {
+    await likeFunction(currentVideo.id);
   };
 
-  const handleDislike = () => {
-
+  const handleDislike = async () => {
+    await dislikeFunction(currentVideo.id);
   };
+
+
+  console.log(currentVideo.likes?.includes(currentUser.id))
 
   return (
     <Container>
@@ -69,19 +73,19 @@ const Video = () => {
             <Buttons>
               <Button onClick={ handleLike }>
                 { 
-                currentVideo.likes?.includes(currentUser._id) ? ( 
-                  <ThumbUpAltIcon /> 
-                ) : ( 
-                  <ThumbUpOffAltOutlinedIcon /> 
-                ) }{ " " }
+                currentVideo.likes?.includes(currentUser.id) ? ( 
+                    <ThumbUpAltIcon />
+                  ) : ( 
+                    <ThumbUpOffAltOutlinedIcon /> 
+                  ) }{ " " }
                 { currentVideo.likes?.length }
               </Button>
               <Button onClick={ handleDislike }>
               { 
-                currentVideo.likes?.includes(currentUser._id) ? ( 
-                  <ThumbDownAltIcon />
-                ) : ( 
-                  <ThumbDownOffAltIcon />
+                currentVideo.dislikes?.includes(currentUser.id) ? ( 
+                    <ThumbDownAltIcon />
+                  ) : ( 
+                    <ThumbDownOffAltIcon />
                 ) }{ " " }
                  Dislike
               </Button>
