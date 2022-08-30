@@ -49,9 +49,6 @@ const Video = () => {
     await dislikeFunction(currentVideo.id);
   };
 
-
-  console.log(currentVideo.likes?.includes(currentUser.id))
-
   return (
     <Container>
         <Content>
