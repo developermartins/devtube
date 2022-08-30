@@ -38,8 +38,8 @@ const Video = () => {
         const channelRes = await fetchChannelInfo(videoRes.userId);
         setChannel(channelRes);
         dispatch(fetchSuccess(videoRes));
-      } catch (error) {}
-    }
+      } catch (error) {};
+    };
     fetchData();
   }, [path, dispatch]);
 
@@ -52,8 +52,6 @@ const Video = () => {
     await dislikeFunction(currentVideo._id);
     dispatch(dislike(currentUser.id));
   };
-
-  console.log(currentUser)
 
   const handleSubscription = async () => {
     currentUser.subscribedUsers.includes(channel._id)
@@ -115,7 +113,7 @@ const Video = () => {
             }</SubscribeButon>
           </Channel>
           <Hr />
-          <Comments />
+          <Comments videoId={ currentVideo._id } />
         </Content>
         {/* <Recomendation>
           <Card type="sm" />

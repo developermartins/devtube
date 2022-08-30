@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { fetchVideoComments } from '../services/userFeedback';
 import VideoComment from './VideoComment';
 
-const Comments = () => {
+const Comments = ({ videoId }) => {
+
+  const { currentUser } = useSelector((state) => state.user);
+
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const res = await fetchVideoComments(videoId);
+        setComments(res);
+      } catch (error) {};
+    };
+    fetchComments()
+  }, [videoId]);
+  
+
   return (
     <Container>
         <NewComment>
-            <Avatar src='https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj' />
+            <Avatar src={ currentUser.img } />
             <Input placeholder='Add a comment...' />
         </NewComment>
-        <VideoComment />
-        <VideoComment />
-        <VideoComment />
-        <VideoComment />
+        {
+          comments.map((comment) => (
+            <VideoComment key={comment._id} comment={ comment } />
+          ))
+        }
     </Container>
   );
 };
