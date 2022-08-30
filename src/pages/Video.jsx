@@ -108,7 +108,9 @@ const Video = () => {
                 </Description>
               </ChannelDetail>
             </ChannelInfo>
-            <SubscribeButon>Subscribe</SubscribeButon>
+            <SubscribeButon>{ 
+              currentUser.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
+            }</SubscribeButon>
           </Channel>
           <Hr />
           <Comments />
