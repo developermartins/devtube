@@ -35,9 +35,13 @@ const Login = () => {
     };
 
     const signInWithGoogle = async () => {
+        dispatch(loginStart())
         signInWithPopup(auth, provider)
-            .then((result) => loginWithGoogle(result).then((res) => console.log(res)) )
-            .catch((error) => {});
+            .then((result) => loginWithGoogle(result)
+            .then((res) => dispatch(loginSuccess(res))))
+            .catch((error) => {
+                dispatch(loginFailure());
+            });
     };
 
   return (
