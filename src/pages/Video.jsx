@@ -9,6 +9,8 @@ import { format } from 'timeago.js';
 
 import styled from 'styled-components';
 import Card from '../components/Card';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpOffAltOutlinedIcon from '@mui/icons-material/ThumbUpOffAltOutlined';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
@@ -38,6 +40,14 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
+  const handleLike = () => {
+
+  };
+
+  const handleDislike = () => {
+
+  };
+
   return (
     <Container>
         <Content>
@@ -57,11 +67,23 @@ const Video = () => {
           <Details>
             <Info>{ currentVideo.views } views • { format(currentVideo.createdAt) }</Info>
             <Buttons>
-              <Button>
-                <ThumbUpOffAltOutlinedIcon /> { currentVideo.likes?.length }
+              <Button onClick={ handleLike }>
+                { 
+                currentVideo.likes?.includes(currentUser._id) ? ( 
+                  <ThumbUpAltIcon /> 
+                ) : ( 
+                  <ThumbUpOffAltOutlinedIcon /> 
+                ) }{ " " }
+                { currentVideo.likes?.length }
               </Button>
-              <Button>
-                <ThumbDownOffAltIcon /> Dislike
+              <Button onClick={ handleDislike }>
+              { 
+                currentVideo.likes?.includes(currentUser._id) ? ( 
+                  <ThumbDownAltIcon />
+                ) : ( 
+                  <ThumbDownOffAltIcon />
+                ) }{ " " }
+                 Dislike
               </Button>
               <Button>
                 <ReplyOutlinedIcon /> Share
