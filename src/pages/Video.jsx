@@ -1,31 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { fetchVideoById } from '../services/fetchVideos';
+import { fetchChannelInfo } from '../services/fetchChannelInfo';
+import { fetchSuccess } from '../redux/videoSlice';
+import { format } from 'timeago.js';
+
 import styled from 'styled-components';
 import Card from '../components/Card';
-
 import ThumbUpOffAltOutlinedIcon from '@mui/icons-material/ThumbUpOffAltOutlined';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../components/Comments';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { fetchVideoById } from '../services/fetchVideos';
-
 const Video = () => {
 
   const { currentUser } = useSelector((state) => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
+
   const dispatch = useDispatch();
 
   const path = useLocation().pathname.split("/")[2];
 
-  const [video, setVideo] = useState({});
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
-    const videoRes = await fetchVideoById(path);
-  }, []);
-
+    const fetchData = async () => {
+      try {
+        const videoRes = await fetchVideoById(path);
+        const channelRes = await fetchChannelInfo(videoRes.userId);
+        setChannel(channelRes);
+        dispatch(fetchSuccess(videoRes));
+      } catch (error) {}
+    }
+    fetchData();
+  }, [path, dispatch]);
 
   return (
     <Container>
@@ -42,12 +53,12 @@ const Video = () => {
               allowfullscreen
             ></iframe>
           </VideoWrapper>
-          <Title>Test Video</Title>
+          <Title>{ currentVideo.title }</Title>
           <Details>
-            <Info>31.531 visualizações • 30 de jun. de 2022</Info>
+            <Info>{ currentVideo.views } views • { format(currentVideo.createdAt) }</Info>
             <Buttons>
               <Button>
-                <ThumbUpOffAltOutlinedIcon /> 123
+                <ThumbUpOffAltOutlinedIcon /> { currentVideo.likes?.length }
               </Button>
               <Button>
                 <ThumbDownOffAltIcon /> Dislike
@@ -63,13 +74,12 @@ const Video = () => {
           <Hr />
           <Channel>
             <ChannelInfo>
-              <ChannelImage src='https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj'/>
+              <ChannelImage src={ channel.img }/>
               <ChannelDetail>
-                <ChannelName>DevMarts</ChannelName>
-                <ChannelCounter>200k Subscribers</ChannelCounter>
+                <ChannelName>{ channel.username }</ChannelName>
+                <ChannelCounter>{ channel.subscribedUsers?.length } Subscribers</ChannelCounter>
                 <Description>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum massa sit amet porttitor aliquet. 
-                  Sed iaculis ac dolor hendrerit dignissim. Duis a auctor quam. Sed at pretium velit.
+                  { currentVideo.description }
                 </Description>
               </ChannelDetail>
             </ChannelInfo>
