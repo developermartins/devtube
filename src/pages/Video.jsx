@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import { fetchVideoById } from '../services/fetchVideos';
 import { fetchChannelInfo } from '../services/fetchChannelInfo';
 import { dislike, fetchSuccess, like } from '../redux/videoSlice';
+import { subscribe, unsubscribe } from '../services/subscriptions';
+import { subscription } from '../redux/userSlice';
 import { format } from 'timeago.js';
 
 import styled from 'styled-components';
@@ -49,6 +51,15 @@ const Video = () => {
   const handleDislike = async () => {
     await dislikeFunction(currentVideo._id);
     dispatch(dislike(currentUser.id));
+  };
+
+  console.log(currentUser)
+
+  const handleSubscription = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await unsubscribe(channel._id)
+      : await subscribe(channel._id);
+    dispatch(subscription(channel._id));
   };
 
   return (
@@ -102,13 +113,13 @@ const Video = () => {
               <ChannelImage src={ channel.img }/>
               <ChannelDetail>
                 <ChannelName>{ channel.username }</ChannelName>
-                <ChannelCounter>{ channel.subscribedUsers?.length } Subscribers</ChannelCounter>
+                <ChannelCounter>{ channel.subscribers } Subscribers</ChannelCounter>
                 <Description>
                   { currentVideo.description }
                 </Description>
               </ChannelDetail>
             </ChannelInfo>
-            <SubscribeButon>{ 
+            <SubscribeButon onClick={ handleSubscription }>{ 
               currentUser.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
             }</SubscribeButon>
           </Channel>
