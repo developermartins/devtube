@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { fetchVideoComments } from '../services/userFeedback';
+
+import styled from 'styled-components';
 import VideoComment from './VideoComment';
 
 const Comments = ({ videoId }) => {

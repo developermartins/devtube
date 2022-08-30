@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchChannelInfo } from '../services/fetchChannelInfo';
+import { format } from 'timeago.js';
+
 import styled from 'styled-components';
 
-const VideoComment = () => {
+const VideoComment = ({ comment }) => {
+
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const channelRes = await fetchChannelInfo(comment.userId);
+        setChannel(channelRes);
+      } catch (error) {};
+    };
+    fetchData();
+  }, [comment.userId]);
+
   return (
     <Container>
-        <Avatar src='https://yt3.ggpht.com/ytc/AMLnZu-oDvWEJ-WfN9bgxQB2YAlnjC2uqN_c7JQZvX9Ikfg=s88-c-k-c0x00ffffff-no-rj' />
+        <Avatar src={ channel.img } />
         <Details>
             <Name>
-                John Doe <Date>Há 1 mês</Date> 
+                { channel.username } <Date>{ format(comment.createdAt) }</Date>
             </Name>
             <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum massa sit amet porttitor aliquet. 
-                Sed iaculis ac dolor hendrerit dignissim. Duis a auctor quam. Sed at pretium velit.
+              { comment.userComment }
             </Text>
         </Details>
     </Container>
