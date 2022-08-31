@@ -71,6 +71,11 @@ const UploadPopUp = ({ setOpen }) => {
        img && uploadFile(img, "imgUrl");
     }, [img]);
 
+
+    const handleUpload = async (e) => {
+        e.preventDefault();
+    };
+
   return (
     <Container>
         <Wrapper>
@@ -94,7 +99,7 @@ const UploadPopUp = ({ setOpen }) => {
                     <Input type="file" accept="image/*" onChange={ e => setImg(e.target.files[0]) } />
                 )
             }
-            <UploadButton>Upload</UploadButton>
+            <UploadButton onClick={ handleUpload }>Upload</UploadButton>
         </Wrapper> 
     </Container>
   );
