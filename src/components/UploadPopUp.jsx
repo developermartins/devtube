@@ -23,7 +23,17 @@ const Container = styled.section`
     align-items: center;
     justify-content: center;
 `;
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+    width: 600px;
+    height: 600px;
+    background-color: ${({ theme }) => theme.bgLigther};
+    color: ${({ theme }) => theme.text};
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+`;
 const Close = styled.button``;
 const Title = styled.h1``;
 
