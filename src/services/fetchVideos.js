@@ -12,3 +12,8 @@ export const fetchVideoById = async (id) => {
     return res.data;
 };
 
+export const fetchVideoByTags = async (tags) => {
+    const res = await axios.get(`/videos/tags?tags=${tags}`);
+
+    return res.data;
+};

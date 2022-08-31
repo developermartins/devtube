@@ -181,10 +181,6 @@ const Hr = styled.hr`
     border: 0.5px solid ${({theme}) => theme.soft};
 `;
 
-const Recomendation = styled.section`
-    flex: 2;
-`;
-
 const Channel = styled.section`
   display: flex;
   justify-content: space-between;
