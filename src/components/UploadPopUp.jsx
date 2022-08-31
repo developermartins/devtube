@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { postVideos } from '../services/postVideos';
+import { useNavigate } from 'react-router-dom';
 
 import app from '../firebase';
 import styled from 'styled-components';
 
 const UploadPopUp = ({ setOpen }) => {
+
+    const navigate = useNavigate();
 
     const [img, setImg] = useState(undefined);
     const [video, setVideo] = useState(undefined);
@@ -74,6 +78,11 @@ const UploadPopUp = ({ setOpen }) => {
 
     const handleUpload = async (e) => {
         e.preventDefault();
+
+        const res = await postVideos({...inputs, tags});
+
+        setOpen(false);
+        res.status === 201 && navigate(`/video/${res.data._id}`);
     };
 
   return (
