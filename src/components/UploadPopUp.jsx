@@ -7,7 +7,18 @@ const UploadPopUp = ({ setOpen }) => {
         <Wrapper>
             <Close onClick={ () => setOpen(false) }>X</Close>
             <Title>Upload a New Video</Title>
-        </Wrapper>
+            <Label>Video:</Label>
+            <Input type="file" accept="video/*" />
+            <Label>Title:</Label>
+            <Input type="text" placeholder='Video Title' />
+            <Label>Description:</Label>
+            <Description placeholder="Add a description" rows={ 8 } />
+            <Label>Tags:</Label>
+            <Input type="text" placeholder='Separate the tags with commas.' />
+            <Label>Video thumb:</Label>
+            <Input type="file" accept="image/*" />
+            <UploadButton>Upload</UploadButton>
+        </Wrapper> 
     </Container>
   );
 };
@@ -25,7 +36,7 @@ const Container = styled.section`
 `;
 const Wrapper = styled.section`
     width: 600px;
-    height: 600px;
+    height: 700px;
     background-color: ${({ theme }) => theme.bgLighter};
     border-radius: 10px;
     color: ${({ theme }) => theme.text};
@@ -49,5 +60,36 @@ const Title = styled.h1`
     text-align: center;
     font-size: 1.6rem;
 `;
+
+const Input = styled.input`
+    border: 1px solid ${({ theme }) => theme.soft};
+    color: ${({ theme }) => theme.text};
+    border-radius: 5px;
+    padding: 10px;
+    background-color: transparent;
+`;
+
+const Description = styled.textarea`
+    border: 1px solid ${({ theme }) => theme.soft};
+    color: ${({ theme }) => theme.text};
+    border-radius: 5px;
+    padding: 10px;
+    background-color: transparent;
+`;
+
+const UploadButton = styled.button`
+    border-radius: 3px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.soft};
+    color: ${({ theme }) => theme.textSoft};
+`;
+
+const Label = styled.label`
+    font-size: 1rem;
+`;
+
 
 export default UploadPopUp;
