@@ -45,6 +45,9 @@ const Close = styled.button`
     right: 10px;
     cursor: pointer;
 `;
-const Title = styled.h1``;
+const Title = styled.h1`
+    text-align: center;
+    font-size: 1.6rem;
+`;
 
 export default UploadPopUp;
