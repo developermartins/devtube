@@ -64,7 +64,7 @@ const Video = () => {
     <Container>
         <Content>
           <VideoWrapper>
-            <VideoFrame src={ currentVideo.videoUrl } />
+            <VideoFrame src={ currentVideo.videoUrl } controls />
           </VideoWrapper>
           <Title>{ currentVideo.title }</Title>
           <Details>
@@ -140,7 +140,6 @@ const Content = styled.section`
 `;
 
 const VideoWrapper = styled.section`
-
 `;
 
 const Title = styled.h1`
@@ -236,6 +235,7 @@ const Description = styled.p`
 `;
 
 const VideoFrame = styled.video`
+  border-radius: 20px;
   max-height: 720px;
   width: 100%;
   object-fit: cover;
