@@ -11,7 +11,6 @@ import { subscription } from '../redux/userSlice';
 import { format } from 'timeago.js';
 
 import styled from 'styled-components';
-import Card from '../components/Card';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpOffAltOutlinedIcon from '@mui/icons-material/ThumbUpOffAltOutlined';
@@ -19,6 +18,7 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../components/Comments';
+import Recomendation from '../components/Recomendation';
 
 const Video = () => {
 
@@ -115,16 +115,7 @@ const Video = () => {
           <Hr />
           <Comments videoId={ currentVideo._id } />
         </Content>
-        {/* <Recomendation>
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-        </Recomendation> */}
+        <Recomendation tags={ currentVideo.tags }/>
     </Container>
   );
 };

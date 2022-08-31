@@ -18,15 +18,17 @@ const Recomendation = ({ tags }) => {
         fetchRecomendedVideos();
     }, []);
 
-  return (
-    <Container>
-        { 
-            videos.map((video) => {
-                <Card key={video._id} video={video} />
-            })
-        }
-    </Container>
-  );
+    
+    return (
+        <Container>
+            { 
+                videos?.map((video) => (
+                        <Card type="sm" key={video._id} video={video} />
+                    )
+                )
+            }
+        </Container>
+    );
 };
 
 const Container = styled.section`
