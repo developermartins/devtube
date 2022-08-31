@@ -34,7 +34,12 @@ const Wrapper = styled.section`
     gap: 20px;
     position: relative;
 `;
-const Close = styled.button``;
+const Close = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+`;
 const Title = styled.h1``;
 
 export default UploadPopUp;
