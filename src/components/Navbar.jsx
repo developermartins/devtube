@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
+import UploadPopUp from './UploadPopUp';
 
 
 
@@ -16,28 +17,31 @@ const Navbar = () => {
     const { currentUser } = useSelector(state => state.user);
 
   return (
-    <Container>
-        <Wrapper>
-            <Search>
-                <Input placeholder='Search' />
-                <SearchOutlinedIcon />
-            </Search>
-           { currentUser ? ( 
-            <User>
-                <VideoCallOutlinedIcon  onClick={ () => setOpen(true) } />
-                <Avatar src={ currentUser.img } />
-                { currentUser.username }
-            </User> 
-           ) :
-            <Link to="signin" style={{ textDecoration: "none" }}>
-                <Button>
-                    <AccountCircleOutlinedIcon />
-                    SIGN IN
-                </Button>
-            </Link>
-            }
-        </Wrapper>
-    </Container>
+    <>
+        <Container>
+            <Wrapper>
+                <Search>
+                    <Input placeholder='Search' />
+                    <SearchOutlinedIcon />
+                </Search>
+            { currentUser ? ( 
+                <User>
+                    <VideoCallOutlinedIcon  onClick={ () => setOpen(true) } />
+                    <Avatar src={ currentUser.img } />
+                    { currentUser.username }
+                </User> 
+            ) :
+                <Link to="signin" style={{ textDecoration: "none" }}>
+                    <Button>
+                        <AccountCircleOutlinedIcon />
+                        SIGN IN
+                    </Button>
+                </Link>
+                }
+            </Wrapper>
+        </Container>
+        { open && <UploadPopUp setOpen={ setOpen } /> }
+    </>
   );
 };
 
