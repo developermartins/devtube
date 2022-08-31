@@ -5,7 +5,7 @@ const UploadPopUp = ({ setOpen }) => {
   return (
     <Container>
         <Wrapper>
-            <Close>X</Close>
+            <Close onClick={ () => setOpen(false) }>X</Close>
             <Title>Upload a New Video</Title>
         </Wrapper>
     </Container>
@@ -26,7 +26,8 @@ const Container = styled.section`
 const Wrapper = styled.section`
     width: 600px;
     height: 600px;
-    background-color: ${({ theme }) => theme.bgLigther};
+    background-color: ${({ theme }) => theme.bgLighter};
+    border-radius: 10px;
     color: ${({ theme }) => theme.text};
     padding: 20px;
     display: flex;
@@ -36,6 +37,10 @@ const Wrapper = styled.section`
 `;
 const Close = styled.button`
     position: absolute;
+    background: none;
+    border: none;
+    color: ${({ theme }) => theme.text};
+    font-size: 1rem;
     top: 10px;
     right: 10px;
     cursor: pointer;
