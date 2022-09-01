@@ -16,7 +16,9 @@ const Search = () => {
         };
 
         fetchVideos();
-    }, []);
+    }, [query]);
+
+    console.log(videos)
 
   return (
     <Container>Search</Container>

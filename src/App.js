@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Video from './pages/Video';
 import Login from './pages/Login';
 import usePersistedState from './utils/usePersistedState';
+import Search from './pages/Search';
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
                   <Route index element={ <Home type="random" /> } />
                   <Route path="trends" element={ <Home type="trend" /> } />
                   <Route path="subscriptions" element={ <Home type="sub" /> } />
+                  <Route path="search" element={ <Search /> } />
                   <Route path='signin' element={ <Login /> } />
                   <Route path='video'>
                     <Route path=':id' element={ <Video /> } />

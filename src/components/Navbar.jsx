@@ -23,8 +23,8 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <Search>
-                    <Input placeholder='Search' onChange={ () => setQuery(e.target.value) } />
-                    <SearchOutlinedIcon  onClick={ () => navigate(`/search?q=${query}`) } />
+                    <Input placeholder='Search' onChange={ (e) => setQuery(e.target.value) } />
+                    <SearchOutlinedIcon  onClick={ () => navigate(`/videos/search?q=${query}`) } />
                 </Search>
             { currentUser ? ( 
                 <User>
