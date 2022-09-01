@@ -17,3 +17,9 @@ export const fetchVideoByTags = async (tags) => {
 
     return res.data;
 };
+
+export const searchVideos = async (query) => {
+    const res = await axios.get(`/videos/search${query}`);
+
+    return res.data;
+};
