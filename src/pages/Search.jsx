@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { searchVideos } from '../services/fetchVideos';
 
 import styled from 'styled-components';
+import Card from '../components/Card';
 
 const Search = () => {
 
@@ -21,13 +22,18 @@ const Search = () => {
     console.log(videos)
 
   return (
-    <Container>Search</Container>
+    <Container>
+        { videos.map((video) => (
+            <Card key={ video._id } video={ video } />
+        )) }
+    </Container>
   );
 };
 
 const Container = styled.section`
     display: flex;
-    flex-direction: wrap;
+    flex-wrap: wrap;
+    padding: 20px 60px;
     gap: 10px;
 `;
 
