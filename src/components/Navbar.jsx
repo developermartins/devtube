@@ -9,7 +9,6 @@ import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import UploadPopUp from './UploadPopUp';
 
 
-
 const Navbar = () => {
 
     const navigate = useNavigate();
