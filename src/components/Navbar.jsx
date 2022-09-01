@@ -17,12 +17,17 @@ const Navbar = () => {
 
     const { currentUser } = useSelector(state => state.user);
 
+    const handleChange = (e) => {
+        e.preventDefault();
+        setQuery(e.target.value);
+    };
+
   return (
     <>
         <Container>
             <Wrapper>
                 <Search>
-                    <Input placeholder='Search' onChange={ (e) => setQuery(e.target.value) } />
+                    <Input placeholder='Search' onChange={ handleChange } />
                     <SearchOutlinedIcon  onClick={ () => navigate(`/search?q=${query}`) } style={{ "cursor": "pointer" }} />
                 </Search>
             { currentUser ? ( 
