@@ -19,8 +19,6 @@ const Search = () => {
         fetchVideos();
     }, [query]);
 
-    console.log(videos)
-
   return (
     <Container>
         { videos.map((video) => (
