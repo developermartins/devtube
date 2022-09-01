@@ -24,7 +24,7 @@ const Navbar = () => {
             <Wrapper>
                 <Search>
                     <Input placeholder='Search' onChange={ (e) => setQuery(e.target.value) } />
-                    <SearchOutlinedIcon  onClick={ () => navigate(`/search?q=${query}`) } />
+                    <SearchOutlinedIcon  onClick={ () => navigate(`/search?q=${query}`) } style={{ "cursor": "pointer" }} />
                 </Search>
             { currentUser ? ( 
                 <User>
