@@ -48,7 +48,7 @@ const Navbar = ({ toggleTheme }) => {
             </Wrapper>
         </Container>
         { open && <UploadPopUp setOpen={ setOpen } /> }
-        { openPopUp && <UserPopUp toggleTheme={ toggleTheme } /> }
+        { openPopUp && <UserPopUp toggleTheme={ toggleTheme } setOpenPopUp={ setOpenPopUp } /> }
     </>
   );
 };

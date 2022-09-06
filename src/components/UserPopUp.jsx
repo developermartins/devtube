@@ -1,18 +1,32 @@
 import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
-import styled, { ThemeContext } from 'styled-components';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 
-const UploadPopUp = ({ toggleTheme }) => {
+const UploadPopUp = ({ toggleTheme, setOpenPopUp }) => {
 
     const { title } = useContext(ThemeContext);
 
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        dispatch(logout());
+        setOpenPopUp(false);
+        try {
+            dispatch(logout());
+            navigate('/')
+        } catch (error) {};
+    };
 
   return (
       <Container>
@@ -23,12 +37,12 @@ const UploadPopUp = ({ toggleTheme }) => {
                     Your channel
                 </Item>
             </Link>
-            <Link to="" style={{ textDecoration: "none", color: "inherit" }}>
+            <Button  onClick={ handleLogout }>
                 <Item>
                     <LogoutOutlinedIcon />
                     Logout
                 </Item>
-            </Link>
+            </Button>
             <Hr />
             <Link to="" style={{ textDecoration: "none", color: "inherit" }}>
                 <Item>
@@ -68,8 +82,7 @@ const Wrapper = styled.section`
     gap: 20px;
     position: relative;
 `;
-const Close = styled.button`
-    position: absolute;
+const Button = styled.button`
     background: none;
     border: none;
     color: ${({ theme }) => theme.text};
