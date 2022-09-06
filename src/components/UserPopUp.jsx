@@ -45,7 +45,7 @@ const UploadPopUp = ({ toggleTheme, setOpenPopUp }) => {
             </Button>
             <Hr />
             <Link 
-                to="settings" 
+                to="settings"
                 onClick={ () => setOpenPopUp(false) } 
                 style={{ textDecoration: "none", color: "inherit" }}
             >
