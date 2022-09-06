@@ -1,12 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import Card from '../components/Card';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { fetchChannelVideos } from '../services/fetchChannelVideos';
 
 const Channel = () => {
 
   const { currentUser } = useSelector(state => state.user);
+
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      const res = await fetchChannelVideos(currentUser.id);
+      setVideos(res);
+    };
+    fetchVideos();
+  }, []);
 
   return (
     <Container>
@@ -27,7 +41,9 @@ const Channel = () => {
       </MainSectionTitle>
       <Hr />
       <ChannelVideos>
-
+      { videos.map((video) => (
+          <Card key={ video._id } video={ video } />
+        )) }
       </ChannelVideos>
     </Container>
   );
