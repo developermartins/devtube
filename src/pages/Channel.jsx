@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
+import "@splidejs/splide/dist/css/splide.min.css";
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { fetchChannelVideos } from '../services/fetchChannelVideos';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const Channel = () => {
 
@@ -40,14 +42,28 @@ const Channel = () => {
         Your videos
       </MainSectionTitle>
       <Hr />
-      <ChannelVideos>
-      { videos.map((video) => (
-          <Card key={ video._id } video={ video } />
-        )) }
-      </ChannelVideos>
+      <SlideContainer>
+          <Splide options={{
+              perPage: 4,
+              arrows: false,
+              pagination: false,
+              drag: 'free',
+              gap: '4px',
+              width: '100%',
+          }}>
+              {videos.map((video) => {
+                return (
+                  <SplideSlide key={video._id}>
+                    <Card key={ video._id } video={ video } />
+                  </SplideSlide>
+                );
+              })}
+          </Splide>
+      </SlideContainer>
     </Container>
   );
 };
+
 
 const Container = styled.section`
   width: 100%;
@@ -109,12 +125,11 @@ const Hr = styled.hr`
     border: 1px solid ${({theme}) => theme.soft};
 `;
 
-const ChannelVideos = styled.section`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px 60px;
-    border: 1px solid red;
+const SlideContainer = styled.section`
+  margin-left: 35px;
+  position: absolute;
+  padding: 10px 40px;
+  width: 85%;
 `;
 
 export default Channel;
