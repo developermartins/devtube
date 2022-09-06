@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/userSlice';
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -13,6 +13,10 @@ import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightne
 const UploadPopUp = ({ toggleTheme, setOpenPopUp }) => {
 
     const { title } = useContext(ThemeContext);
+
+    const { currentUser } = useSelector(state => state.user);
+
+    const user = currentUser.username.replace(/\s/g, '');
 
     const dispatch = useDispatch();
 
@@ -31,7 +35,11 @@ const UploadPopUp = ({ toggleTheme, setOpenPopUp }) => {
   return (
       <Container>
         <Wrapper>
-            <Link to="" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link
+                to={ `channel/${user}` }
+                onClick={ () => setOpenPopUp(false) }
+                style={{ textDecoration: "none", color: "inherit" }}
+            >
                 <Item>
                     <AccountCircleOutlinedIcon />
                     Your channel

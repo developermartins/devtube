@@ -6,16 +6,22 @@ import Home from './pages/Home';
 
 import { darkTheme, lightTheme } from './utils/theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Video from './pages/Video';
 import Login from './pages/Login';
 import usePersistedState from './utils/usePersistedState';
 import Search from './pages/Search';
 import Settings from './pages/Settings';
+import Channel from './pages/Channel';
 
 const App = () => {
 
   const [theme, setTheme] = usePersistedState('theme', lightTheme);
+
+  const { currentUser } = useSelector(state => state.user);
+
+  const user = currentUser.username.replace(/\s/g, '');
 
   const toggleTheme = () => {
 
@@ -36,11 +42,12 @@ const App = () => {
                   <Route path="trends" element={ <Home type="trend" /> } />
                   <Route path="subscriptions" element={ <Home type="sub" /> } />
                   <Route path="search" element={ <Search /> } />
-                  <Route path='signin' element={ <Login /> } />
-                  <Route path='video'>
-                    <Route path=':id' element={ <Video /> } />
+                  <Route path="signin" element={ <Login /> } />
+                  <Route path="video">
+                    <Route path=":id" element={ <Video /> } />
                   </Route>
-                  <Route path='settings' element={ <Settings /> } />
+                  <Route path="settings" element={ <Settings /> } />
+                  <Route path={ `channel/${user}` } element={ <Channel /> } />
                 </Route>
               </Routes>
             </Wrapper>
