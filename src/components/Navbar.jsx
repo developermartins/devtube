@@ -33,7 +33,10 @@ const Navbar = ({ toggleTheme }) => {
                 </Search>
             { currentUser ? ( 
                 <User>
-                    <VideoCallOutlinedIcon  onClick={ () => setOpen(true) } style={{ "cursor": "pointer" }} />
+                    <VideoCallOutlinedIcon
+                        onClick={ () => setOpen(true) }
+                        style={{ "cursor": "pointer", "marginRight":"20px" }}
+                    />
                     <Avatar src={ currentUser.img } onClick={() => setOpenPopUp(!openPopUp)} />
                     { currentUser.username }
                 </User> 
