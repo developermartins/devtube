@@ -72,7 +72,7 @@ const Video = () => {
             <Buttons>
               <Button onClick={ handleLike }>
                 { 
-                currentVideo.likes?.includes(currentUser.id) ? ( 
+                currentVideo.likes?.includes(currentUser?.id) ? ( 
                     <ThumbUpAltIcon />
                   ) : ( 
                     <ThumbUpOffAltOutlinedIcon /> 
@@ -81,7 +81,7 @@ const Video = () => {
               </Button>
               <Button onClick={ handleDislike }>
               { 
-                currentVideo.dislikes?.includes(currentUser.id) ? ( 
+                currentVideo.dislikes?.includes(currentUser?.id) ? ( 
                     <ThumbDownAltIcon />
                   ) : ( 
                     <ThumbDownOffAltIcon />
@@ -108,9 +108,11 @@ const Video = () => {
                 </Description>
               </ChannelDetail>
             </ChannelInfo>
+
             <SubscribeButon onClick={ handleSubscription }>{ 
-              currentUser.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
+              currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
             }</SubscribeButon>
+
           </Channel>
           <Hr />
           <Comments videoId={ currentVideo._id } />
@@ -226,6 +228,17 @@ const VideoFrame = styled.video`
   max-height: 720px;
   width: 100%;
   object-fit: cover;
+`;
+
+const UpdateAccount = styled.button`
+    margin-right: 30px;
+    padding: 15px;
+    width: 150px;
+    border-radius: 20px;
+    border-color:  ${({theme}) => theme.text};
+    background: none;
+    cursor: pointer;
+    color:  ${({theme}) => theme.textSoft};
 `;
 
 export default Video;

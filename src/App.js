@@ -21,7 +21,7 @@ const App = () => {
 
   const { currentUser } = useSelector(state => state.user);
 
-  const user = currentUser.username.replace(/\s/g, '');
+  const user = currentUser?.username?.replace(/\s/g, '');
 
   const toggleTheme = () => {
 
