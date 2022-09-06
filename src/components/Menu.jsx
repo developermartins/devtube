@@ -36,10 +36,12 @@ const Menu = ({ toggleTheme }) => {
                     DevTube
                 </Logo>
             </Link>
-            <Item>
-                <HomeIcon />
-                Menu
-            </Item>
+           <Link to="/" style={{ textDecoration: "none", color: 'inherit' }}>
+                <Item>
+                    <HomeIcon />
+                    Home
+                </Item>
+           </Link>
             <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
                 <Item>
                     <ExploreOutlinedIcon />
