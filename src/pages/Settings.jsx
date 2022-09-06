@@ -27,6 +27,8 @@ const Settings = () => {
             </Content>
         </ChannelAccountInfo>
         <Hr />
+        <UpdateAccount>Update account</UpdateAccount>
+        <DeleteAccount>Delete account</DeleteAccount>
     </Container>
   );
 };
@@ -82,6 +84,27 @@ const SectionTitle = styled.p`
 const Content = styled.p`
     color:  ${({theme}) => theme.textSoft};
     font-size: 0.9em;
+`;
+
+const UpdateAccount = styled.button`
+    margin-right: 30px;
+    padding: 15px;
+    border-radius: 20px;
+    border-color:  ${({theme}) => theme.text};
+    background: none;
+    cursor: pointer;
+    color:  ${({theme}) => theme.textSoft};
+`;
+
+const DeleteAccount = styled.button`
+    margin-right: 30px;
+    padding: 15px;
+    border-radius: 20px;
+    border-color: red;
+    background: none;
+    cursor: pointer;
+    color:  red;
+    outline: none;
 `;
 
 export default Settings;
