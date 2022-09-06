@@ -108,6 +108,7 @@ const SubTitle = styled.h2`
 const Input = styled.input`
     border: 1px solid ${({theme}) => theme.soft};
     border-radius: 5px;
+    color: ${({theme}) => theme.text};
     padding: 10px;
     background-color: transparent;
     width: 100%;
