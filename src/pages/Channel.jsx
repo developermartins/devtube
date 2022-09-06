@@ -29,7 +29,7 @@ const ChannelHeader = styled.section`
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: #121212;
+  background-color: ${({ theme }) => theme.channelHeaderBg};
   padding: 50px 150px 10px;
 `;
 
@@ -49,17 +49,17 @@ const Avatar = styled.img`
 
 const ChannelName = styled.h1`
     font-size: 1.5em;
-    color: #c7c7c7;
+    color: ${({theme}) => theme.textSoft};
 `;
 
 const ChanelSubs = styled.p`
     font-size: 0.9em;
-    color: #c7c7c7;
+    color: ${({theme}) => theme.textSoft};
 `;
 
 const ChanelNav = styled.nav`
     font-size: 0.9em;
-    color: #c7c7c7;
+    color: ${({theme}) => theme.textSoft};
 `;
 
 export default Channel;
