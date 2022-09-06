@@ -22,6 +22,13 @@ const Channel = () => {
           </UpdateAccount>
         </Link>
       </ChannelHeader>
+      <MainSectionTitle>
+        Your videos
+      </MainSectionTitle>
+      <Hr />
+      <ChannelVideos>
+
+      </ChannelVideos>
     </Container>
   );
 };
@@ -72,6 +79,26 @@ const UpdateAccount = styled.button`
     background: none;
     cursor: pointer;
     color:  ${({theme}) => theme.textSoft};
+`;
+
+const MainSectionTitle = styled.h1`
+  font-size: 1.4em;
+  padding: 50px 150px 10px;
+  color: ${({theme}) => theme.text};
+`;
+
+const Hr = styled.hr`
+    margin: 15px 80px;
+    width: 90%;
+    border: 1px solid ${({theme}) => theme.soft};
+`;
+
+const ChannelVideos = styled.section`
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 60px;
+    border: 1px solid red;
 `;
 
 export default Channel;
