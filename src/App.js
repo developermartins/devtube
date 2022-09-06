@@ -11,6 +11,7 @@ import Video from './pages/Video';
 import Login from './pages/Login';
 import usePersistedState from './utils/usePersistedState';
 import Search from './pages/Search';
+import Settings from './pages/Settings';
 
 const App = () => {
 
@@ -39,6 +40,7 @@ const App = () => {
                   <Route path='video'>
                     <Route path=':id' element={ <Video /> } />
                   </Route>
+                  <Route path='settings' element={ <Settings /> } />
                 </Route>
               </Routes>
             </Wrapper>
