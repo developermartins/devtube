@@ -8,6 +8,7 @@ import {
 } from '../redux/userSlice';
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -19,6 +20,8 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const handleSignin = async (e) => {
         e.preventDefault();
         dispatch(loginStart());
@@ -27,6 +30,7 @@ const Login = () => {
             const userLogin = await login(username, password);
 
             dispatch(loginSuccess(userLogin));
+            navigate('/')
         } catch (error) {
             dispatch(loginFailure());
             console.log(error.response.data);
@@ -38,7 +42,7 @@ const Login = () => {
         dispatch(loginStart())
         signInWithPopup(auth, provider)
             .then((result) => loginWithGoogle(result)
-            .then((res) => dispatch(loginSuccess(res))))
+            .then((res) => dispatch(loginSuccess(res), navigate('/'))))
             .catch((error) => {
                 dispatch(loginFailure());
             });
