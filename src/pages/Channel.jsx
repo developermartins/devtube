@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Channel = () => {
 
@@ -15,6 +16,11 @@ const Channel = () => {
           <ChannelName>{ currentUser.username }</ChannelName>
           <ChanelSubs>{ currentUser.subscribers } subscribers</ChanelSubs>
         </ChannelInfo>
+        <Link to="/settings" style={{ textDecoration: "none" }}>
+          <UpdateAccount>
+              Update account
+          </UpdateAccount>
+        </Link>
       </ChannelHeader>
     </Container>
   );
@@ -57,9 +63,15 @@ const ChanelSubs = styled.p`
     color: ${({theme}) => theme.textSoft};
 `;
 
-const ChanelNav = styled.nav`
-    font-size: 0.9em;
-    color: ${({theme}) => theme.textSoft};
+const UpdateAccount = styled.button`
+    margin-right: 30px;
+    padding: 15px;
+    width: 150px;
+    border-radius: 20px;
+    border-color:  ${({theme}) => theme.text};
+    background: none;
+    cursor: pointer;
+    color:  ${({theme}) => theme.textSoft};
 `;
 
 export default Channel;
