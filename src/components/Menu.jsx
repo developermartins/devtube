@@ -102,12 +102,14 @@ const Menu = ({ toggleTheme }) => {
                 Live
             </Item>
             <Hr />
-            <Link to="settings" style={{ textDecoration: "none", color: 'inherit' }}>
-                <Item>
-                    <SettingsOutlinedIcon />
-                    Settings
-                </Item>
-            </Link>
+            {currentUser && 
+                <Link to="settings" style={{ textDecoration: "none", color: 'inherit' }}>
+                    <Item>
+                        <SettingsOutlinedIcon />
+                        Settings
+                    </Item>
+                </Link>
+            }
             <Item>
                 <FlagOutlinedIcon />
                 Report
