@@ -9,7 +9,7 @@ import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import UploadPopUp from './UploadPopUp';
 import UserPopUp from './UserPopUp';
 
-const Navbar = () => {
+const Navbar = ({ toggleTheme }) => {
 
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
@@ -34,7 +34,7 @@ const Navbar = () => {
             { currentUser ? ( 
                 <User>
                     <VideoCallOutlinedIcon  onClick={ () => setOpen(true) } style={{ "cursor": "pointer" }} />
-                    <Avatar src={ currentUser.img } onClick={() => setOpenPopUp(true)} />
+                    <Avatar src={ currentUser.img } onClick={() => setOpenPopUp(!openPopUp)} />
                     { currentUser.username }
                 </User> 
             ) :
@@ -48,7 +48,7 @@ const Navbar = () => {
             </Wrapper>
         </Container>
         { open && <UploadPopUp setOpen={ setOpen } /> }
-        { openPopUp && <UserPopUp setOpen={ setOpenPopUp } /> }
+        { openPopUp && <UserPopUp toggleTheme={ toggleTheme } /> }
     </>
   );
 };

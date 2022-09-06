@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import MartsTube from '../images/logo.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
@@ -17,9 +20,6 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
-
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Menu = ({ toggleTheme }) => {
 

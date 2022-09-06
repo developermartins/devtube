@@ -27,7 +27,7 @@ const App = () => {
         <BrowserRouter>
           <Menu toggleTheme={ toggleTheme } />
           <Main>
-            <Navbar />
+            <Navbar toggleTheme={ toggleTheme } />
             <Wrapper>
               <Routes>
                 <Route path='/'>
