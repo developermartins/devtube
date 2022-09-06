@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ChannelPage = () => {
+const Channel = () => {
   return (
-    <div>ChannelPage</div>
+    <div>Channel</div>
   );
 };
 
-export default ChannelPage;
+export default Channel;
