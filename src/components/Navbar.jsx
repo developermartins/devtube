@@ -116,6 +116,7 @@ const Avatar = styled.img`
     height: 32px;
     border-radius: 50%;
     background-color: #999;
+    cursor: pointer;
 `;
 
 export default Navbar;
