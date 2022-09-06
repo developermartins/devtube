@@ -7,12 +7,13 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import UploadPopUp from './UploadPopUp';
-
+import UserPopUp from './UserPopUp';
 
 const Navbar = () => {
 
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [openPopUp, setOpenPopUp] = useState(false);
     const [query, setQuery] = useState('');
 
     const { currentUser } = useSelector(state => state.user);
@@ -33,7 +34,7 @@ const Navbar = () => {
             { currentUser ? ( 
                 <User>
                     <VideoCallOutlinedIcon  onClick={ () => setOpen(true) } style={{ "cursor": "pointer" }} />
-                    <Avatar src={ currentUser.img } />
+                    <Avatar src={ currentUser.img } onClick={() => setOpenPopUp(true)} />
                     { currentUser.username }
                 </User> 
             ) :
@@ -47,6 +48,7 @@ const Navbar = () => {
             </Wrapper>
         </Container>
         { open && <UploadPopUp setOpen={ setOpen } /> }
+        { openPopUp && <UserPopUp setOpen={ setOpenPopUp } /> }
     </>
   );
 };
