@@ -97,9 +97,9 @@ const UpdateAccountPopUp = ({ setOpen, userId }) => {
             <Label>Email</Label>
             <Input type="text" placeholder='Email' name='email' onChange={ handlechange } />
             <Label>Password</Label>
-            <Input type="text" placeholder='Password' name='password' onChange={ handlechange } />
+            <Input type="password" placeholder='Password' name='password' onChange={ handlechange } />
             <Label>Confirm password</Label>
-            <Input type="text" placeholder='Password' name='password' onChange={ handlechange } />
+            <Input type="password" placeholder='Password' name='password' onChange={ handlechange } />
             <UploadButton onClick={ handleUpdate }>Update account</UploadButton>
         </Wrapper> 
     </Container>

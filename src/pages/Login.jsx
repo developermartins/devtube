@@ -44,7 +44,7 @@ const Login = () => {
 
         const userSignup = await signup(email, username, password);
 
-        userSignup.status === 201 && dispatch(loginSuccess(userSignup.data)) && navigate('/');
+        userSignup.status === 201 && dispatch(loginSuccess(userSignup.data.accountData)) && navigate('/');
     };
 
     const signInWithGoogle = async () => {
