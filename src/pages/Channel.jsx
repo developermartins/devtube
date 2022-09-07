@@ -18,7 +18,7 @@ const Channel = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await fetchChannelVideos(currentUser.id);
+      const res = await fetchChannelVideos(currentUser?._id);
       setVideos(res);
     };
     fetchVideos();
@@ -27,10 +27,10 @@ const Channel = () => {
   return (
     <Container>
       <ChannelHeader>
-        <Avatar src={ currentUser.img } />
+        <Avatar src={ currentUser?.img } />
         <ChannelInfo>
-          <ChannelName>{ currentUser.username }</ChannelName>
-          <ChanelSubs>{ currentUser.subscribers } subscribers</ChanelSubs>
+          <ChannelName>{ currentUser?.username }</ChannelName>
+          <ChanelSubs>{ currentUser?.subscribers } subscribers</ChanelSubs>
         </ChannelInfo>
         <Link to="/settings" style={{ textDecoration: "none" }}>
           <UpdateAccount>

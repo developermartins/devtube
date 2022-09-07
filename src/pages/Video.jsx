@@ -50,7 +50,7 @@ const Video = () => {
 
     if (currentUser) {
       await likeFunction(currentVideo._id);
-      dispatch(like(currentUser?.id));
+      dispatch(like(currentUser?._id));
     } else {
       navigate("/signin");
     };
@@ -60,7 +60,7 @@ const Video = () => {
 
     if (currentUser) {
       await dislikeFunction(currentVideo._id);
-      dispatch(dislike(currentUser?.id));
+      dispatch(dislike(currentUser?._id));
     } else {
       navigate("/signin");
     };
@@ -92,7 +92,7 @@ const Video = () => {
             <Buttons>
               <Button onClick={ handleLike }>
                 { 
-                currentVideo.likes?.includes(currentUser?.id) ? ( 
+                currentVideo.likes?.includes(currentUser?._id) ? ( 
                     <ThumbUpAltIcon />
                   ) : ( 
                     <ThumbUpOffAltOutlinedIcon /> 
@@ -101,7 +101,7 @@ const Video = () => {
               </Button>
               <Button onClick={ handleDislike }>
               { 
-                currentVideo.dislikes?.includes(currentUser?.id) ? ( 
+                currentVideo.dislikes?.includes(currentUser?._id) ? ( 
                     <ThumbDownAltIcon />
                   ) : ( 
                     <ThumbDownOffAltIcon />
@@ -129,7 +129,7 @@ const Video = () => {
               </ChannelDetail>
             </ChannelInfo>
             {
-              currentUser?.id !== currentVideo.userId && 
+              currentUser?._id !== currentVideo.userId && 
               <SubscribeButon onClick={ handleSubscription }>{ 
                 currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
               }</SubscribeButon>
