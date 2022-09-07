@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import app from '../firebase';
 import styled from 'styled-components';
 import { updateAccount } from '../services/accountServices';
+import { useDispatch } from 'react-redux';
 
 const UpdateAccountPopUp = ({ setOpen, userId }) => {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const [img, setImg] = useState(undefined);
     const [avatarPercentage, setAvatarPercentage] = useState(0);

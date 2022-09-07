@@ -56,7 +56,9 @@ export const {
     loginSuccess,
     loginFailure,
     logout,
-    subscription
+    subscription,
+    startAccountUpdate,
+    updateAccountSuccess,
 } = userSlice.actions;
 
 export default userSlice.reducer;
