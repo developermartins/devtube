@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import UpdateAccountPopUp from '../components/UpdateAccountPopUp';
 
 const Settings = () => {
@@ -10,8 +11,6 @@ const Settings = () => {
     const [open, setOpen] = useState(false);
 
     const { currentUser } = useSelector(state => state.user);
-
-    console.log(currentUser)
 
   return (
     <>
@@ -32,7 +31,9 @@ const Settings = () => {
                 </Content>
             </ChannelAccountInfo>
             <Hr />
-            <UpdateAccount onClick={ () => setOpen(true) } >Update account</UpdateAccount>
+            { !currentUser?.fromGoogle &&  
+                <UpdateAccount onClick={ () => setOpen(true) } >Update account</UpdateAccount> 
+            }
             <DeleteAccount>Delete account</DeleteAccount>
         </Container>
         { open && <UpdateAccountPopUp setOpen={ setOpen } userId={ currentUser?._id } /> }
