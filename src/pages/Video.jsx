@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { dislikeFunction, likeFunction } from '../services/userFeedback';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchVideoById } from '../services/fetchVideos';
 import { fetchChannelInfo } from '../services/fetchChannelInfo';
 import { dislike, fetchSuccess, like } from '../redux/videoSlice';
@@ -27,6 +27,8 @@ const Video = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const path = useLocation().pathname.split("/")[2];
 
   const [channel, setChannel] = useState({});
@@ -44,20 +46,37 @@ const Video = () => {
   }, [path, dispatch]);
 
   const handleLike = async () => {
-    await likeFunction(currentVideo._id);
-    dispatch(like(currentUser.id));
+
+    if (currentUser) {
+      await likeFunction(currentVideo._id);
+      dispatch(like(currentUser?.id));
+    } else {
+      navigate("/signin");
+    };
   };
 
   const handleDislike = async () => {
-    await dislikeFunction(currentVideo._id);
-    dispatch(dislike(currentUser.id));
+
+    if (currentUser) {
+      await dislikeFunction(currentVideo._id);
+      dispatch(dislike(currentUser?.id));
+    } else {
+      navigate("/signin");
+    };
+
   };
 
   const handleSubscription = async () => {
-    currentUser.subscribedUsers.includes(channel._id)
+
+    if (currentUser) {
+      currentUser?.subscribedUsers.includes(channel._id)
       ? await unsubscribe(channel._id)
       : await subscribe(channel._id);
-    dispatch(subscription(channel._id));
+      dispatch(subscription(channel._id));
+    } else {
+      navigate("/signin");
+    };
+
   };
 
   return (
@@ -108,11 +127,12 @@ const Video = () => {
                 </Description>
               </ChannelDetail>
             </ChannelInfo>
-
-            <SubscribeButon onClick={ handleSubscription }>{ 
-              currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
-            }</SubscribeButon>
-
+            {
+              currentUser?.id !== currentVideo.userId && 
+              <SubscribeButon onClick={ handleSubscription }>{ 
+                currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
+              }</SubscribeButon>
+            }
           </Channel>
           <Hr />
           <Comments videoId={ currentVideo._id } />
