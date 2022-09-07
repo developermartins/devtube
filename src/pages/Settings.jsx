@@ -23,7 +23,7 @@ const Settings = () => {
 
         const res = await deleteAccount(currentUser?._id);
 
-        res.status === 200 && dispatch(logout()) && navigate("/")
+        res.status === 200 && dispatch(logout()) && navigate("/");
     }
 
   return (
