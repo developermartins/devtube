@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login, loginWithGoogle } from '../services/login';
+import { login, loginWithGoogle, signup } from '../services/login';
 import { 
     loginFailure,
     loginStart,
@@ -38,6 +38,15 @@ const Login = () => {
 
     };
 
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        dispatch(loginStart());
+
+        const userSignup = await signup(email, username, password);
+
+        userSignup.status === 201 && dispatch(loginSuccess(userSignup.data)) && navigate('/');
+    };
+
     const signInWithGoogle = async () => {
         dispatch(loginStart())
         signInWithPopup(auth, provider)
@@ -53,16 +62,16 @@ const Login = () => {
         <Wrapper>
             <Title>Sign in</Title>
             <SubTitle>to continue to DevMarts</SubTitle>
-            <Input placeholder="email" onChange={e=>setEmail(e.target.value)} />
-            <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
-            <Button onClick={handleSignin}>Sing in</Button>
+            <Input placeholder="email" onChange={ e=>setEmail(e.target.value) } />
+            <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) } />
+            <Button onClick={ handleSignin }>Sing in</Button>
             <Title>or</Title>
-            <Button onClick={signInWithGoogle}>Singn in with Google</Button>
+            <Button onClick={ signInWithGoogle }>Singn in with Google</Button>
             <Title>or</Title>
-            <Input placeholder="username" onChange={e=>setUsername(e.target.value)} />
-            <Input placeholder="email" onChange={e=>setEmail(e.target.value)}/>
-            <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)}/>
-            <Button>Sing up</Button>
+            <Input placeholder="username" onChange={ e=>setUsername(e.target.value) } />
+            <Input placeholder="email" onChange={ e=>setEmail(e.target.value) }/>
+            <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) }/>
+            <Button onClick={ handleSignup }>Sing up</Button>
         </Wrapper>
         <More>
             Brasil(BR)
