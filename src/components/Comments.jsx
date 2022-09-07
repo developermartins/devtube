@@ -70,7 +70,7 @@ const Comments = ({ videoId }) => {
             }
         </NewComment>
         {
-          comments.map((comment) => (
+          comments?.map((comment) => (
             <VideoComment key={comment._id} comment={ comment } />
           ))
         }
