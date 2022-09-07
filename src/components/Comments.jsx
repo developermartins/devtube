@@ -11,6 +11,7 @@ const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [comment, setComment] = useState("");
+  const [error, setError] = useState(false);
   const [open, setOpen] = useState();
   const [sentComment, setSentComment] = useState(false);
   const [comments, setComments] = useState([]);
@@ -28,20 +29,28 @@ const Comments = ({ videoId }) => {
   const handleChange = (e) => {
     e.preventDefault();
     setComment(e.target.value);
+    error && setError(false);
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
     setComment("");
+    setSentComment(false);
     setOpen(false);
+    setError(false)
   };
 
   const handleComment = async (e) => {
     e.preventDefault();
-    await postComment({ userComment: comment, videoId: videoId });
-    setSentComment(true);
-    setComment("");
-    setOpen(false);
+    if (!comment.length) {
+      setError(true);
+      setSentComment(false);
+    } else {
+      await postComment({ userComment: comment, videoId: videoId });
+      setSentComment(true);
+      setComment("");
+      setOpen(false);
+    };
   };
 
   return (
@@ -69,6 +78,7 @@ const Comments = ({ videoId }) => {
                </>
             }
         </NewComment>
+        { error && <ErrorMessage>Please, type something</ErrorMessage> }
         {
           comments?.map((comment) => (
             <VideoComment key={comment._id} comment={ comment } />
@@ -126,6 +136,11 @@ const CancelCommentButon = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   text-transform: uppercase;
+`;
+
+const ErrorMessage = styled.p`
+  color: #cc1a00;
+  margin-left: 60px;
 `;
 
 export default Comments;
