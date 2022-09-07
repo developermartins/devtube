@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { dislikeFunction, likeFunction } from '../services/userFeedback';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchVideoById } from '../services/fetchVideos';
+import { fetchVideoById, incrementViews } from '../services/fetchVideos';
 import { fetchChannelInfo } from '../services/fetchChannelInfo';
 import { dislike, fetchSuccess, like } from '../redux/videoSlice';
 import { subscribe, unsubscribe } from '../services/subscriptions';
@@ -37,7 +37,7 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await fetchVideoById(path);
-        console.log(videoRes);
+        await incrementViews(path);
         const channelRes = await fetchChannelInfo(videoRes.userId);
         setChannel(channelRes);
         dispatch(fetchSuccess(videoRes));
