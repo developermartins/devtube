@@ -56,13 +56,18 @@ const Comments = ({ videoId }) => {
   return (
     <Container>
         <NewComment>
-            <Avatar src={ currentUser?.img } />
-            <Input
-              placeholder='Add a comment...'
-              value={ comment }
-              onClick={ () => setOpen(true) }
-              onChange={ handleChange }
-            />
+            {
+              currentUser &&
+              <>
+                <Avatar src={ currentUser?.img } />
+                <Input
+                  placeholder='Add a comment...'
+                  value={ comment }
+                  onClick={ () => setOpen(true) }
+                  onChange={ handleChange }
+                />
+              </>
+            }
             { open &&
                <>
                   <CancelCommentButon
