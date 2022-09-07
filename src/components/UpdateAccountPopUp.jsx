@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { postVideos } from '../services/postVideos';
 import { useNavigate } from 'react-router-dom';
+import { updateAccount } from '../services/accountServices';
+import { useDispatch } from 'react-redux';
+import { startAccountUpdate, updateAccountSuccess } from '../redux/userSlice';
 
 import app from '../firebase';
 import styled from 'styled-components';
-import { updateAccount } from '../services/accountServices';
-import { useDispatch } from 'react-redux';
 
 const UpdateAccountPopUp = ({ setOpen, userId }) => {
 
@@ -71,13 +71,14 @@ const UpdateAccountPopUp = ({ setOpen, userId }) => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+        dispatch(startAccountUpdate());
 
         const res = await updateAccount(userId, inputs);
 
-        console.log(res)
+        dispatch(updateAccountSuccess(res.data));
 
         setOpen(false);
-        res.status === 200 && navigate(`/`);
+        res.status === 200 && navigate("/");
     };
 
   return (

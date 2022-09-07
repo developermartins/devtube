@@ -11,6 +11,8 @@ const Settings = () => {
 
     const { currentUser } = useSelector(state => state.user);
 
+    console.log(currentUser)
+
   return (
     <>
         <Container>
@@ -33,7 +35,7 @@ const Settings = () => {
             <UpdateAccount onClick={ () => setOpen(true) } >Update account</UpdateAccount>
             <DeleteAccount>Delete account</DeleteAccount>
         </Container>
-        { open && <UpdateAccountPopUp setOpen={ setOpen } userId={ currentUser?.id } /> }
+        { open && <UpdateAccountPopUp setOpen={ setOpen } userId={ currentUser?._id } /> }
     </>
   );
 };
