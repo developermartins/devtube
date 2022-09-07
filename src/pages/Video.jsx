@@ -119,10 +119,10 @@ const Video = () => {
           <Hr />
           <Channel>
             <ChannelInfo>
-              <ChannelImage src={ channel.img }/>
+              <ChannelImage src={ channel?.img }/>
               <ChannelDetail>
-                <ChannelName>{ channel.username }</ChannelName>
-                <ChannelCounter>{ channel.subscribers } Subscribers</ChannelCounter>
+                <ChannelName>{ channel?.username }</ChannelName>
+                <ChannelCounter>{ channel?.subscribers } Subscribers</ChannelCounter>
                 <Description>
                   { currentVideo?.description }
                 </Description>
@@ -131,7 +131,7 @@ const Video = () => {
             {
               currentUser?._id !== currentVideo?.userId && 
               <SubscribeButon onClick={ handleSubscription }>{ 
-                currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
+                currentUser?.subscribedUsers?.includes(channel?._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
               }</SubscribeButon>
             }
           </Channel>
