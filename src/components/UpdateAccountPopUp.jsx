@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import app from '../firebase';
 import styled from 'styled-components';
+import { updateAccount } from '../services/accountServices';
 
-const UploadPopUp = ({ setOpen }) => {
+const UpdateAccountPopUp = ({ setOpen, userId }) => {
 
     const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const UploadPopUp = ({ setOpen }) => {
             (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                urlType === "imgUrl" && setAvatarPercentage(Math.round(progress));
+                urlType === "img" && setAvatarPercentage(Math.round(progress));
                 switch (snapshot.state) {
                 case 'paused':
                     console.log('Upload is paused');
@@ -61,17 +62,19 @@ const UploadPopUp = ({ setOpen }) => {
     };
 
     useEffect(() => {
-       img && uploadFile(img, "imgUrl");
+       img && uploadFile(img, "img");
     }, [img]);
 
 
     const handleUpdate = async (e) => {
         e.preventDefault();
 
-        const res = await postVideos({...inputs, tags});
+        const res = await updateAccount(userId, inputs);
+
+        console.log(res)
 
         setOpen(false);
-        res.status === 201 && navigate(`/video/${res.data._id}`);
+        res.status === 200 && navigate(`/`);
     };
 
   return (
@@ -168,4 +171,4 @@ const Label = styled.label`
 `;
 
 
-export default UploadPopUp;
+export default UpdateAccountPopUp;

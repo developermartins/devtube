@@ -1,35 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import UpdateAccountPopUp from '../components/UpdateAccountPopUp';
 
 const Settings = () => {
 
+    const [open, setOpen] = useState(false);
+
     const { currentUser } = useSelector(state => state.user);
 
-    console.log(currentUser)
-
   return (
-    <Container>
-        <PageTitle>Account</PageTitle>
-        <Wrapper>
-            <ChannelImage src={ currentUser.img } />
-            <ChannelName>Welcome, { currentUser.username }!</ChannelName>
-        </Wrapper>
-        <Hr />
-        <ChannelAccountInfo>
-            <SectionTitle>Your DevTube Channel</SectionTitle>
-            <Content>
-                Logged in as { currentUser.email }
-                <br />
-                <br />
-                Username { currentUser.username }
-            </Content>
-        </ChannelAccountInfo>
-        <Hr />
-        <UpdateAccount>Update account</UpdateAccount>
-        <DeleteAccount>Delete account</DeleteAccount>
-    </Container>
+    <>
+        <Container>
+            <PageTitle>Account</PageTitle>
+            <Wrapper>
+                <ChannelImage src={ currentUser.img } />
+                <ChannelName>Welcome, { currentUser.username }!</ChannelName>
+            </Wrapper>
+            <Hr />
+            <ChannelAccountInfo>
+                <SectionTitle>Your DevTube Channel</SectionTitle>
+                <Content>
+                    Logged in as { currentUser.email }
+                    <br />
+                    <br />
+                    Username { currentUser.username }
+                </Content>
+            </ChannelAccountInfo>
+            <Hr />
+            <UpdateAccount onClick={ () => setOpen(true) } >Update account</UpdateAccount>
+            <DeleteAccount>Delete account</DeleteAccount>
+        </Container>
+        { open && <UpdateAccountPopUp setOpen={ setOpen } userId={ currentUser?.id } /> }
+    </>
   );
 };
 

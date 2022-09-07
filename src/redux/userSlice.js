@@ -29,6 +29,16 @@ export const userSlice = createSlice({
             state.loading = false;
             state.error = false;
         },
+
+        startAccountUpdate: (state) => {
+            state.loading = true;
+        },
+
+        updateAccountSuccess: (state, action) => {
+            state.loading = false;
+            state.currentUser = action.payload;
+        },
+
         subscription: (state, action) => {
             if (state.currentUser.subscribedUsers.includes(action.payload)) {
                 state.currentUser.subscribedUsers.splice(state.currentUser.subscribedUsers.findIndex(
