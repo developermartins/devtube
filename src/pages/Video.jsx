@@ -84,24 +84,24 @@ const Video = () => {
     <Container>
         <Content>
           <VideoWrapper>
-            <VideoFrame src={ currentVideo.videoUrl } controls />
+            <VideoFrame src={ currentVideo?.videoUrl } controls />
           </VideoWrapper>
-          <Title>{ currentVideo.title }</Title>
+          <Title>{ currentVideo?.title }</Title>
           <Details>
-            <Info>{ currentVideo.views } views • { format(currentVideo.createdAt) }</Info>
+            <Info>{ currentVideo?.views } views • { format(currentVideo?.createdAt) }</Info>
             <Buttons>
               <Button onClick={ handleLike }>
                 { 
-                currentVideo.likes?.includes(currentUser?._id) ? ( 
+                currentVideo?.likes?.includes(currentUser?._id) ? ( 
                     <ThumbUpAltIcon />
                   ) : ( 
                     <ThumbUpOffAltOutlinedIcon /> 
                   ) }{ " " }
-                { currentVideo.likes?.length }
+                { currentVideo?.likes?.length }
               </Button>
               <Button onClick={ handleDislike }>
               { 
-                currentVideo.dislikes?.includes(currentUser?._id) ? ( 
+                currentVideo?.dislikes?.includes(currentUser?._id) ? ( 
                     <ThumbDownAltIcon />
                   ) : ( 
                     <ThumbDownOffAltIcon />
@@ -124,21 +124,21 @@ const Video = () => {
                 <ChannelName>{ channel.username }</ChannelName>
                 <ChannelCounter>{ channel.subscribers } Subscribers</ChannelCounter>
                 <Description>
-                  { currentVideo.description }
+                  { currentVideo?.description }
                 </Description>
               </ChannelDetail>
             </ChannelInfo>
             {
-              currentUser?._id !== currentVideo.userId && 
+              currentUser?._id !== currentVideo?.userId && 
               <SubscribeButon onClick={ handleSubscription }>{ 
                 currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
               }</SubscribeButon>
             }
           </Channel>
           <Hr />
-          <Comments videoId={ currentVideo._id } />
+          <Comments videoId={ currentVideo?._id } />
         </Content>
-        <Recomendation tags={ currentVideo.tags }/>
+        <Recomendation tags={ currentVideo?.tags }/>
     </Container>
   );
 };
