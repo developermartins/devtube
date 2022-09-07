@@ -11,15 +11,8 @@ const UploadPopUp = ({ setOpen }) => {
     const navigate = useNavigate();
 
     const [img, setImg] = useState(undefined);
-    const [video, setVideo] = useState(undefined);
-    const [imgPercentage, setImgPercentage] = useState(0);
-    const [videoPercentage, setVideoPercentage] = useState(0);
+    const [avatarPercentage, setAvatarPercentage] = useState(0);
     const [inputs, setInputs] = useState({});
-    const [tags, setTags] = useState([]);
-
-    const handleTags = (e) => {
-        setTags(e.target.value.split(","));
-    };
 
     const handlechange = (e) => {
         setInputs((prev) => {
@@ -40,7 +33,7 @@ const UploadPopUp = ({ setOpen }) => {
             (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                urlType === "imgUrl" ? setImgPercentage(Math.round(progress)) : setVideoPercentage(Math.round(progress));
+                urlType === "imgUrl" && setAvatarPercentage(Math.round(progress));
                 switch (snapshot.state) {
                 case 'paused':
                     console.log('Upload is paused');
@@ -68,15 +61,11 @@ const UploadPopUp = ({ setOpen }) => {
     };
 
     useEffect(() => {
-       video && uploadFile(video, "videoUrl");
-    }, [video]);
-
-    useEffect(() => {
        img && uploadFile(img, "imgUrl");
     }, [img]);
 
 
-    const handleUpload = async (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
 
         const res = await postVideos({...inputs, tags});
@@ -89,26 +78,22 @@ const UploadPopUp = ({ setOpen }) => {
     <Container>
         <Wrapper>
             <Close onClick={ () => setOpen(false) }>X</Close>
-            <Title>Upload a New Video</Title>
-            <Label>Video:</Label>
+            <Title>Update your account</Title>
+            <Label>Avatar</Label>
             {  
-                videoPercentage > 0 ? ("Uploading: " + videoPercentage + "%") : (
-                    <Input type="file" accept="video/*" onChange={ e => setVideo(e.target.files[0]) } />
+                avatarPercentage > 0 ? ("Uploading: " + avatarPercentage + "%") : (
+                    <Input type="file" accept="png/*" onChange={ e => setImg(e.target.files[0]) } />
                 )
             }
-            <Label>Title:</Label>
-            <Input type="text" placeholder='Video Title' name='title' onChange={ handlechange } />
-            <Label>Description:</Label>
-            <Description placeholder="Add a description" name='description' rows={ 8 }  onChange={ handlechange } />
-            <Label>Tags:</Label>
-            <Input type="text" placeholder='Separate the tags with commas.' onChange={ handleTags } />
-            <Label>Video thumb:</Label>
-            {
-                imgPercentage > 0 ? ("Uploading: " + imgPercentage + "%") : (
-                    <Input type="file" accept="image/*" onChange={ e => setImg(e.target.files[0]) } />
-                )
-            }
-            <UploadButton onClick={ handleUpload }>Upload</UploadButton>
+            <Label>Username</Label>
+            <Input type="text" placeholder='Username' name='username' onChange={ handlechange } />
+            <Label>Email</Label>
+            <Input type="text" placeholder='Email' name='email' onChange={ handlechange } />
+            <Label>Password</Label>
+            <Input type="text" placeholder='Email' name='password' onChange={ handlechange } />
+            {/* <Label>Confirm password</Label>
+            <Input type="text" placeholder='Email' name='email' onChange={ handlechange } /> */}
+            <UploadButton onClick={ handleUpdate }>Update account</UploadButton>
         </Wrapper> 
     </Container>
   );
