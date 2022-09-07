@@ -73,7 +73,7 @@ const UploadPopUp = ({ toggleTheme, setOpenPopUp }) => {
 
 const Container = styled.section`
     width: 100%;
-    height: 50%;
+    height: 100vh;
     position: absolute;
     top: 50;
     left: 0;
