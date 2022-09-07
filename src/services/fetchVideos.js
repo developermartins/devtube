@@ -23,3 +23,9 @@ export const searchVideos = async (query) => {
 
     return res.data;
 };
+
+export const incrementViews = async (id) => {
+    const res = await axios.put(`/videos/view/${id}`);
+
+    return res;
+};

@@ -37,6 +37,7 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await fetchVideoById(path);
+        console.log(videoRes);
         const channelRes = await fetchChannelInfo(videoRes.userId);
         setChannel(channelRes);
         dispatch(fetchSuccess(videoRes));
