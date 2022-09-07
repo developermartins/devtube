@@ -65,7 +65,7 @@ const Comments = ({ videoId }) => {
             />
             { open &&
                <>
-                  <CancelCommentButon 
+                  <CancelCommentButon
                     onClick={ handleCancel }
                   >
                     cancel
