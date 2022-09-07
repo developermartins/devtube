@@ -27,7 +27,7 @@ const Login = () => {
         dispatch(loginStart());
 
         try {
-            const userLogin = await login(username, password);
+            const userLogin = await login(email, password);
 
             dispatch(loginSuccess(userLogin));
             navigate('/')
@@ -53,7 +53,7 @@ const Login = () => {
         <Wrapper>
             <Title>Sign in</Title>
             <SubTitle>to continue to DevMarts</SubTitle>
-            <Input placeholder="username" onChange={e=>setUsername(e.target.value)} />
+            <Input placeholder="email" onChange={e=>setEmail(e.target.value)} />
             <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
             <Button onClick={handleSignin}>Sing in</Button>
             <Title>or</Title>
