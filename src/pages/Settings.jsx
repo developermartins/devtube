@@ -1,16 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import UpdateAccountPopUp from '../components/UpdateAccountPopUp';
 
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-
-import UpdateAccountPopUp from '../components/UpdateAccountPopUp';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteAccount } from '../services/accountServices';
+import { logout } from '../redux/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
 
     const [open, setOpen] = useState(false);
 
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
     const { currentUser } = useSelector(state => state.user);
+
+    const handleDelete = async (e) => {
+        e.preventDefault();
+
+        const res = await deleteAccount(currentUser?._id);
+
+        res.status === 200 && dispatch(logout()) && navigate("/")
+    }
 
   return (
     <>
@@ -34,7 +48,7 @@ const Settings = () => {
             { !currentUser?.fromGoogle &&  
                 <UpdateAccount onClick={ () => setOpen(true) } >Update account</UpdateAccount> 
             }
-            <DeleteAccount>Delete account</DeleteAccount>
+            <DeleteAccount onClick={ handleDelete }>Delete account</DeleteAccount>
         </Container>
         { open && <UpdateAccountPopUp setOpen={ setOpen } userId={ currentUser?._id } /> }
     </>
