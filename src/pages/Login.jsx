@@ -85,13 +85,17 @@ const Login = () => {
             <Button onClick={ signInWithGoogle }>Singn in with Google</Button>
             <Title>or</Title>
             {
-                inputs.map((input) => (
-                    <Input
-                        key={ input.id }
-                        { ...input }
-                        value={ values[input.name] }
-                        onChange={ handleChange }
-                    />
+                inputs(values.password).map((input) => (
+                    <>
+                        <Input
+                            key={ input.id }
+                            { ...input }
+                            value={ values[input.name] }
+                            onChange={ handleChange }
+                            required={ input.required }
+                        />
+                        <ErrorMessage>{ input.errorMessage }</ErrorMessage>
+                    </>
                 ))
             }
             <Button onClick={ handleSignup }>Sign up</Button>
@@ -126,6 +130,7 @@ const Wrapper = styled.section`
     border-radius: 5px;
     padding: 20px 80px;
     gap: 10px;
+    width: 400px;
 `;
 
 const Title = styled.h1`
@@ -144,6 +149,10 @@ const Input = styled.input`
     padding: 10px;
     background-color: transparent;
     width: 100%;
+
+    &:invalid ~ span {
+        display: block;
+    }
 `;
 
 const Button = styled.button`
@@ -169,6 +178,12 @@ const Links = styled.div`
 
 const Link = styled.span`
     margin-left: 30px;
+`;
+
+const ErrorMessage = styled.span`
+    color: red;
+    font-size: 0.8em;
+    display: none;
 `;
 
 export default Login;
