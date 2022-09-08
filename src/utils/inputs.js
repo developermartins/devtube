@@ -22,7 +22,7 @@ export default inputs = [
     },
     {
         id: 4,
-        name: "confirm-password",
+        name: "confirmPassword",
         type: "password",
         placeholder: "Confirm password",
         label: "Confirm password",
