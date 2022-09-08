@@ -3,6 +3,7 @@ import { fetchChannelInfo } from '../services/fetchChannelInfo';
 import { format } from 'timeago.js';
 
 import styled from 'styled-components';
+import UserDefaultImg from '../images/user.png';
 
 const VideoComment = ({ comment }) => {
 
@@ -20,7 +21,7 @@ const VideoComment = ({ comment }) => {
 
   return (
     <Container>
-        <Avatar src={ channel.img } />
+        <Avatar src={ channel.img || UserDefaultImg } />
         <Details>
             <Name>
                 { channel.username } <Date>{ format(comment.createdAt) }</Date>

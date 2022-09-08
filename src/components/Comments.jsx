@@ -5,6 +5,7 @@ import { postComment } from '../services/postComment';
 
 import styled from 'styled-components';
 import VideoComment from './VideoComment';
+import UserDefaultImg from '../images/user.png';
 
 const Comments = ({ videoId }) => {
 
@@ -59,7 +60,7 @@ const Comments = ({ videoId }) => {
             {
               currentUser &&
               <>
-                <Avatar src={ currentUser?.img } />
+                <Avatar src={ currentUser?.img || UserDefaultImg } />
                 <Input
                   placeholder='Add a comment...'
                   value={ comment }
