@@ -20,6 +20,11 @@ const Login = () => {
         password: "",
     });
 
+    const [signinError, setSigninError] = useState("");
+    const [isSigninError, setIsSigninError] = useState(false);
+    const [signupError, setSignupError] = useState("");
+    const [isSignupError, setIsSignupError] = useState(false);
+
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -29,9 +34,15 @@ const Login = () => {
         dispatch(loginStart());
         const { email, password } = values;
 
-        const userLogin = await login(email, password);
-
-        userLogin.status === 200 ? dispatch(loginSuccess(userLogin.data)) && navigate('/') : dispatch(loginFailure())
+        try {
+            const userLogin = await login(email, password);
+            dispatch(loginSuccess(userLogin));
+            navigate('/')
+        } catch (error) {
+            dispatch(loginFailure());
+            setIsSigninError(true);
+            setSigninError(error.response.data);
+        };
     };
 
     const handleSignup = async (e) => {
@@ -41,9 +52,15 @@ const Login = () => {
 
         dispatch(loginStart());
 
-        const userSignup = await signup(email, username, password);
-
-        userSignup.status === 201 && dispatch(loginSuccess(userSignup.data.accountData)) && navigate('/');
+        try {
+            const userSignup = await signup(email, username, password);
+            dispatch(loginSuccess(userSignup.data.accountData));
+            navigate('/');
+        } catch (error) {
+            dispatch(loginFailure());
+            setIsSignupError(true);
+            setSignupError(error.response.data);
+        };
     };
 
     const signInWithGoogle = async () => {
@@ -57,6 +74,10 @@ const Login = () => {
     };
 
     const handleChange = (e) => {
+        setIsSignupError(false);
+        setSignupError("");
+        setIsSigninError(false);
+        setSigninError("");
         setValues({ ...values, [e.target.name]: e.target.value });
     };
 
@@ -78,6 +99,7 @@ const Login = () => {
                     autocomplete="current-password"
                     onChange={ handleChange }
                 />
+                { isSigninError && <ErrorMessage>{signinError}</ErrorMessage> }
             </Form>
             <Button onClick={ handleSignin }>Sign in</Button>
 
@@ -107,6 +129,7 @@ const Login = () => {
                     onChange={ handleChange }
                 />
             </Form>
+            { isSignupError && <ErrorMessage>{signupError}</ErrorMessage> }
             <Button onClick={ handleSignup }>Sign up</Button>
         </Wrapper>
         <More>

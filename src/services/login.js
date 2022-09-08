@@ -3,7 +3,7 @@ import axios from "axios";
 export const login = async (email, password) => {
     const res = await axios.post(`/auth/signin`, {email, password});
 
-    return res;
+    return res.data;
 };
 
 export const signup = async (email, username, password) => {
@@ -20,4 +20,4 @@ export const loginWithGoogle = async (userData) => {
     });
 
     return res.data;
-}
+};
