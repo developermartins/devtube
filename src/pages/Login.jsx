@@ -61,7 +61,7 @@ const Login = () => {
     <Container>
         <Wrapper>
             <Title>Sign in</Title>
-            <SubTitle>to continue to DevMarts</SubTitle>
+            <SubTitle>to continue to DevTube</SubTitle>
             <Input placeholder="email" onChange={ e=>setEmail(e.target.value) } />
             <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) } />
             <Button onClick={ handleSignin }>Sing in</Button>
@@ -71,6 +71,7 @@ const Login = () => {
             <Input placeholder="username" onChange={ e=>setUsername(e.target.value) } />
             <Input placeholder="email" onChange={ e=>setEmail(e.target.value) }/>
             <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) }/>
+            <Input type="password" placeholder="confirm password" onChange={ e=>setPassword(e.target.value) }/>
             <Button onClick={ handleSignup }>Sing up</Button>
         </Wrapper>
         <More>
