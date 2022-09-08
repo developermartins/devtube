@@ -1,4 +1,4 @@
-export default inputs = [
+export const inputs = [
     {
         id: 1,
         name: "username",

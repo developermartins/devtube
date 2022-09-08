@@ -11,6 +11,8 @@ import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { inputs } from '../utils/inputs';
+
 
 const Login = () => {
 
@@ -69,16 +71,24 @@ const Login = () => {
         <Wrapper>
             <Title>Sign in</Title>
             <SubTitle>to continue to DevTube</SubTitle>
-            <Input placeholder="email" onChange={ e=>setEmail(e.target.value) } />
-            <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) } />
+            <Input placeholder="Email" onChange={ e=>setEmail(e.target.value) } />
+            <Input type="password" placeholder="Password" onChange={ e=>setPassword(e.target.value) } />
             <Button onClick={ handleSignin }>Sign in</Button>
             <Title>or</Title>
             <Button onClick={ signInWithGoogle }>Singn in with Google</Button>
             <Title>or</Title>
-            <Input placeholder="username" onChange={ e=>setUsername(e.target.value) } />
+
+            {
+                inputs.map((input) => (
+                    <Input key={ input.id } { ...input } />
+                ))
+            }
+
+
+            {/* <Input placeholder="username" onChange={ e=>setUsername(e.target.value) } />
             <Input placeholder="email" onChange={ e=>setEmail(e.target.value) }/>
             <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) }/>
-            <Input type="password" placeholder="confirm password" onChange={ e=>setPassword(e.target.value) }/>
+            <Input type="password" placeholder="confirm password" onChange={ e=>setPassword(e.target.value) }/> */}
             <Button onClick={ handleSignup }>Sign up</Button>
         </Wrapper>
         <More>
