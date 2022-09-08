@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import UpdateAccountPopUp from '../components/UpdateAccountPopUp';
+import UserDefaultImg from '../images/user.png';
 
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,7 +32,7 @@ const Settings = () => {
         <Container>
             <PageTitle>Account</PageTitle>
             <Wrapper>
-                <ChannelImage src={ currentUser.img } />
+                <ChannelImage src={ currentUser.img || UserDefaultImg } />
                 <ChannelName>Welcome, { currentUser.username }!</ChannelName>
             </Wrapper>
             <Hr />

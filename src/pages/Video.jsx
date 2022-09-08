@@ -19,6 +19,7 @@ import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../components/Comments';
 import Recomendation from '../components/Recomendation';
+import UserDefaultImg from '../images/user.png';
 
 const Video = () => {
 
@@ -119,7 +120,7 @@ const Video = () => {
           <Hr />
           <Channel>
             <ChannelInfo>
-              <ChannelImage src={ channel?.img }/>
+              <ChannelImage src={ channel?.img || UserDefaultImg }/>
               <ChannelDetail>
                 <ChannelName>{ channel?.username }</ChannelName>
                 <ChannelCounter>{ channel?.subscribers } Subscribers</ChannelCounter>

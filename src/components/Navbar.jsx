@@ -8,6 +8,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import UploadPopUp from './UploadPopUp';
 import UserPopUp from './UserPopUp';
+import UserDefaultImg from '../images/user.png';
 
 const Navbar = ({ toggleTheme }) => {
 
@@ -37,7 +38,7 @@ const Navbar = ({ toggleTheme }) => {
                         onClick={ () => setOpen(true) }
                         style={{ "cursor": "pointer", "marginRight":"20px" }}
                     />
-                    <Avatar src={ currentUser.img } onClick={() => setOpenPopUp(!openPopUp)} />
+                    <Avatar src={ currentUser.img || UserDefaultImg } onClick={() => setOpenPopUp(!openPopUp)} />
                     { currentUser.username }
                 </User> 
             ) :

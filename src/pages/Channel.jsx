@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
 import "@splidejs/splide/dist/css/splide.min.css";
+import UserDefaultImg from '../images/user.png';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -27,7 +28,7 @@ const Channel = () => {
   return (
     <Container>
       <ChannelHeader>
-        <Avatar src={ currentUser?.img } />
+        <Avatar src={ currentUser?.img || UserDefaultImg } />
         <ChannelInfo>
           <ChannelName>{ currentUser?.username }</ChannelName>
           <ChanelSubs>{ currentUser?.subscribers } subscribers</ChanelSubs>
