@@ -5,6 +5,8 @@ export const inputs = [
         type: "text",
         placeholder: "Username",
         label: "Username",
+        errorMessage: "Username should be 3-16 characters and shouldn't include any special character.",
+        required: true,
     },
     {
         id: 2,
@@ -12,6 +14,8 @@ export const inputs = [
         type: "text",
         placeholder: "Email",
         label: "Email",
+        errorMessage: "It should be a valid email address.",
+        required: true,
     },
     {
         id: 3,
@@ -19,6 +23,8 @@ export const inputs = [
         type: "password",
         placeholder: "Password",
         label: "Password",
+        errorMessage: "Password should be 8 or more characters",
+        required: true,
     },
     {
         id: 4,
@@ -26,5 +32,7 @@ export const inputs = [
         type: "password",
         placeholder: "Confirm password",
         label: "Confirm password",
+        errorMessage: "Passwords don't match.",
+        required: true,
     },
 ];

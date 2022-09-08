@@ -49,11 +49,14 @@ const Login = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        dispatch(loginStart());
 
-        const userSignup = await signup(email, username, password);
+        const { email, username, password } = values;
 
-        userSignup.status === 201 && dispatch(loginSuccess(userSignup.data.accountData)) && navigate('/');
+        // dispatch(loginStart());
+
+        // const userSignup = await signup(email, username, password);
+
+        // userSignup.status === 201 && dispatch(loginSuccess(userSignup.data.accountData)) && navigate('/');
     };
 
     const signInWithGoogle = async () => {
@@ -64,6 +67,10 @@ const Login = () => {
             .catch((error) => {
                 dispatch(loginFailure());
             });
+    };
+
+    const handleChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
     };
 
   return (
@@ -77,18 +84,16 @@ const Login = () => {
             <Title>or</Title>
             <Button onClick={ signInWithGoogle }>Singn in with Google</Button>
             <Title>or</Title>
-
             {
                 inputs.map((input) => (
-                    <Input key={ input.id } { ...input } />
+                    <Input
+                        key={ input.id }
+                        { ...input }
+                        value={ values[input.name] }
+                        onChange={ handleChange }
+                    />
                 ))
             }
-
-
-            {/* <Input placeholder="username" onChange={ e=>setUsername(e.target.value) } />
-            <Input placeholder="email" onChange={ e=>setEmail(e.target.value) }/>
-            <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) }/>
-            <Input type="password" placeholder="confirm password" onChange={ e=>setPassword(e.target.value) }/> */}
             <Button onClick={ handleSignup }>Sign up</Button>
         </Wrapper>
         <More>
