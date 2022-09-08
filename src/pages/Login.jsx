@@ -18,6 +18,13 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
+    const [values, setValues] = useState({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -64,7 +71,7 @@ const Login = () => {
             <SubTitle>to continue to DevTube</SubTitle>
             <Input placeholder="email" onChange={ e=>setEmail(e.target.value) } />
             <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) } />
-            <Button onClick={ handleSignin }>Sing in</Button>
+            <Button onClick={ handleSignin }>Sign in</Button>
             <Title>or</Title>
             <Button onClick={ signInWithGoogle }>Singn in with Google</Button>
             <Title>or</Title>
@@ -72,14 +79,14 @@ const Login = () => {
             <Input placeholder="email" onChange={ e=>setEmail(e.target.value) }/>
             <Input type="password" placeholder="password" onChange={ e=>setPassword(e.target.value) }/>
             <Input type="password" placeholder="confirm password" onChange={ e=>setPassword(e.target.value) }/>
-            <Button onClick={ handleSignup }>Sing up</Button>
+            <Button onClick={ handleSignup }>Sign up</Button>
         </Wrapper>
         <More>
-            Brasil(BR)
+            English(US)
             <Links>
-                <Link>Ajuda</Link>
-                <Link>Privacidade</Link>
-                <Link>Termos de uso</Link>
+                <Link>Help</Link>
+                <Link>Privacy</Link>
+                <Link>Use terms</Link>
             </Links>
         </More>
     </Container>
