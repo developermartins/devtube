@@ -11,20 +11,13 @@ import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
-import { inputs } from '../utils/inputs';
-
 
 const Login = () => {
-
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
 
     const [values, setValues] = useState({
         username: "",
         email: "",
         password: "",
-        confirmPassword: "",
     });
 
     const dispatch = useDispatch();
@@ -34,17 +27,11 @@ const Login = () => {
     const handleSignin = async (e) => {
         e.preventDefault();
         dispatch(loginStart());
+        const { email, password } = values;
 
-        try {
-            const userLogin = await login(email, password);
+        const userLogin = await login(email, password);
 
-            dispatch(loginSuccess(userLogin));
-            navigate('/')
-        } catch (error) {
-            dispatch(loginFailure());
-            console.log(error.response.data);
-        };
-
+        userLogin.status === 200 ? dispatch(loginSuccess(userLogin.data)) && navigate('/') : dispatch(loginFailure())
     };
 
     const handleSignup = async (e) => {
@@ -52,11 +39,11 @@ const Login = () => {
 
         const { email, username, password } = values;
 
-        // dispatch(loginStart());
+        dispatch(loginStart());
 
-        // const userSignup = await signup(email, username, password);
+        const userSignup = await signup(email, username, password);
 
-        // userSignup.status === 201 && dispatch(loginSuccess(userSignup.data.accountData)) && navigate('/');
+        userSignup.status === 201 && dispatch(loginSuccess(userSignup.data.accountData)) && navigate('/');
     };
 
     const signInWithGoogle = async () => {
@@ -78,26 +65,48 @@ const Login = () => {
         <Wrapper>
             <Title>Sign in</Title>
             <SubTitle>to continue to DevTube</SubTitle>
-            <Input placeholder="Email" onChange={ e=>setEmail(e.target.value) } />
-            <Input type="password" placeholder="Password" onChange={ e=>setPassword(e.target.value) } />
+            <Form>
+                <Input
+                    placeholder="Email"
+                    name="email"
+                    onChange={ handleChange }
+                />
+                <Input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    autocomplete="current-password"
+                    onChange={ handleChange }
+                />
+            </Form>
             <Button onClick={ handleSignin }>Sign in</Button>
+
             <Title>or</Title>
             <Button onClick={ signInWithGoogle }>Singn in with Google</Button>
+
             <Title>or</Title>
-            {
-                inputs(values.password).map((input) => (
-                    <>
-                        <Input
-                            key={ input.id }
-                            { ...input }
-                            value={ values[input.name] }
-                            onChange={ handleChange }
-                            required={ input.required }
-                        />
-                        <ErrorMessage>{ input.errorMessage }</ErrorMessage>
-                    </>
-                ))
-            }
+            <Title>Sign up</Title>
+            <Form>
+                <Input
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    onChange={ handleChange }
+                />
+                <Input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    onChange={ handleChange }
+                />
+                <Input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    autocomplete="current-password"
+                    onChange={ handleChange }
+                />
+            </Form>
             <Button onClick={ handleSignup }>Sign up</Button>
         </Wrapper>
         <More>
@@ -147,12 +156,9 @@ const Input = styled.input`
     border-radius: 5px;
     color: ${({theme}) => theme.text};
     padding: 10px;
+    margin-bottom: 20px;
     background-color: transparent;
     width: 100%;
-
-    &:invalid ~ span {
-        display: block;
-    }
 `;
 
 const Button = styled.button`
@@ -180,10 +186,15 @@ const Link = styled.span`
     margin-left: 30px;
 `;
 
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+`;
+
 const ErrorMessage = styled.span`
     color: red;
-    font-size: 0.8em;
-    display: none;
 `;
 
 export default Login;
