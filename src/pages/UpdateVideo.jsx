@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Card from '../components/Card';
 import app from '../firebase';
+import { deleteVideo } from '../services/deleteVideo';
 
 const UpdateVideo = () => {
 
@@ -84,6 +85,14 @@ const UpdateVideo = () => {
         res.status === 200 && navigate(`/video/${res.data._id}`);
     };
 
+    const handleDelete = async (e) => {
+        e.preventDefault();
+
+        const res = await deleteVideo(path.toString());
+
+        res.status === 200 && navigate("/");
+    };
+
   return (
     <Container>
         <Title>Update your video</Title>
@@ -106,7 +115,7 @@ const UpdateVideo = () => {
             }
            <ButtonsSection>
                 <UpdateVideoBtn onClick={ handleUpdate }>Update video</UpdateVideoBtn>
-                <DeleteVideoBtn>Delete video</DeleteVideoBtn>
+                <DeleteVideoBtn onClick={ handleDelete }>Delete video</DeleteVideoBtn>
            </ButtonsSection>
         </FormSection>
     </Container>
