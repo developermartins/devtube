@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { updateVideo } from '../services/updateVideo';
 import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
@@ -78,12 +79,10 @@ const UpdateVideo = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
 
-        
+        const res = await updateVideo(path.toString(), { ...inputs, tags });
 
-        // res.status === 201 && navigate(`/video/${res.data._id}`);
+        res.status === 200 && navigate(`/video/${res.data._id}`);
     };
-
-    console.log(currentVideo)
 
   return (
     <Container>
@@ -106,7 +105,7 @@ const UpdateVideo = () => {
                 )
             }
            <ButtonsSection>
-                <UpdateVideoBtn>Update video</UpdateVideoBtn>
+                <UpdateVideoBtn onClick={ handleUpdate }>Update video</UpdateVideoBtn>
                 <DeleteVideoBtn>Delete video</DeleteVideoBtn>
            </ButtonsSection>
         </FormSection>
