@@ -91,12 +91,14 @@ const Login = () => {
                 <Input
                     placeholder="Email"
                     name="email"
+                    required={ true }
                     onChange={ handleChange }
                 />
                 <Input
                     type="password"
                     placeholder="Password"
                     name="password"
+                    required={ true }
                     autocomplete="current-password"
                     onChange={ handleChange }
                 />
@@ -114,18 +116,21 @@ const Login = () => {
                     type="text"
                     placeholder="Username"
                     name="username"
+                    required={ true }
                     onChange={ handleChange }
                 />
                 <Input
                     type="email"
                     placeholder="Email"
                     name="email"
+                    required={ true }
                     onChange={ handleChange }
                 />
                 <Input
                     type="password"
                     placeholder="Password"
                     name="password"
+                    required={ true }
                     autocomplete="off"
                     onChange={ handleChange }
                 />
@@ -219,6 +224,7 @@ const Form = styled.form`
 
 const ErrorMessage = styled.span`
     color: red;
+    font-size: 0.9rem;
 `;
 
 export default Login;
