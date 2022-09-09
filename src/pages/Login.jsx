@@ -20,10 +20,11 @@ const Login = () => {
         password: "",
     });
 
-    const [signinError, setSigninError] = useState("");
     const [isSigninError, setIsSigninError] = useState(false);
-    const [signupError, setSignupError] = useState("");
+    const [signinError, setSigninError] = useState("");
+    
     const [isSignupError, setIsSignupError] = useState(false);
+    const [signupError, setSignupError] = useState("");
 
     const dispatch = useDispatch();
 
@@ -125,7 +126,7 @@ const Login = () => {
                     type="password"
                     placeholder="Password"
                     name="password"
-                    autocomplete="current-password"
+                    autocomplete="off"
                     onChange={ handleChange }
                 />
             </Form>
