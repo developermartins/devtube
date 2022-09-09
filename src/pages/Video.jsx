@@ -130,10 +130,12 @@ const Video = () => {
               </ChannelDetail>
             </ChannelInfo>
             {
-              currentUser?._id !== currentVideo?.userId && 
+              currentUser?._id === currentVideo?.userId ?
+              <UpdateVideo>Update video</UpdateVideo> :
               <SubscribeButon onClick={ handleSubscription }>{ 
                 currentUser?.subscribedUsers?.includes(channel?._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
               }</SubscribeButon>
+              
             }
           </Channel>
           <Hr />
@@ -252,15 +254,16 @@ const VideoFrame = styled.video`
   object-fit: cover;
 `;
 
-const UpdateAccount = styled.button`
-    margin-right: 30px;
-    padding: 15px;
-    width: 150px;
-    border-radius: 20px;
-    border-color:  ${({theme}) => theme.text};
-    background: none;
+const UpdateVideo = styled.button`
+    background-color: #007dd6;
+    font-weight: 500;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    height: max-content;
+    padding: 10px 20px;
     cursor: pointer;
-    color:  ${({theme}) => theme.textSoft};
+    text-transform: uppercase;
 `;
 
 export default Video;
