@@ -8,28 +8,28 @@ import styled from 'styled-components';
 
 const Card = ({ type, video }) => {
 
-  let infoText = `${video.views} views • ${format(video.createdAt)}`;
+  let infoText = `${video?.views} views • ${format(video?.createdAt)}`;
 
   const [channelInfo, setChannelInfo] = useState({});
 
   useEffect(() => {
     const callFetchChannelInfo = async () => {
-      const channel = await fetchChannelInfo(video.userId);
+      const channel = await fetchChannelInfo(video?.userId);
 
       setChannelInfo(channel);
     };
     callFetchChannelInfo();
-  }, [video.userId]);
+  }, [video?.userId]);
 
   return (
     <Link to={`/video/${video._id}`} style={{ textDecoration: 'none' }}>
         <Container type={ type }>
-            <Image type={ type } src={video.imgUrl} />
+            <Image type={ type } src={video?.imgUrl} />
             <Details type={ type }>
                 <ChannelImage type={ type } src={ channelInfo?.img } />
                 <Texts>
-                    <Title>{ video.title }</Title>
-                    <ChannelName>{ channelInfo.username }</ChannelName>
+                    <Title>{ video?.title }</Title>
+                    <ChannelName>{ channelInfo?.username }</ChannelName>
                     <Info>
                         {infoText}
                     </Info>

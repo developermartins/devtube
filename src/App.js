@@ -21,6 +21,9 @@ const App = () => {
   const [theme, setTheme] = usePersistedState('theme', lightTheme);
 
   const { currentUser } = useSelector(state => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
+
+  console.log(currentVideo._id)
 
   const user = currentUser?.username?.replace(/\s/g, '');
 
@@ -49,7 +52,7 @@ const App = () => {
                   </Route>
                   <Route path="settings" element={ <Settings /> } />
                   <Route path={ `channel/${user}` } element={ <Channel /> } />
-                  <Route path="edit-video" element={ <UpdateVideo /> } />
+                  <Route path={`edit-video/${currentVideo._id}`} element={ <UpdateVideo /> } />
                 </Route>
               </Routes>
             </Wrapper>

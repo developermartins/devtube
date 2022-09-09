@@ -37,8 +37,8 @@ const Video = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const videoRes = await fetchVideoById(path);
-        await incrementViews(path);
+        const videoRes = await fetchVideoById(path.toString());
+        await incrementViews(path.toString());
         const channelRes = await fetchChannelInfo(videoRes.userId);
         setChannel(channelRes);
         dispatch(fetchSuccess(videoRes));
@@ -131,13 +131,12 @@ const Video = () => {
             </ChannelInfo>
             {
               currentUser?._id === currentVideo?.userId ?
-              <Link to="edit-video">
+              <Link to={`/edit-video/${currentVideo._id}`} >
                 <UpdateVideo>Update video</UpdateVideo>
               </Link> :
               <SubscribeButon onClick={ handleSubscription }>{ 
                 currentUser?.subscribedUsers?.includes(channel?._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
               }</SubscribeButon>
-              
             }
           </Channel>
           <Hr />
