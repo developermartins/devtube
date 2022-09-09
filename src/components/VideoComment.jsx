@@ -12,7 +12,7 @@ const VideoComment = ({ comment }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const channelRes = await fetchChannelInfo(comment.userId);
+        const channelRes = await fetchChannelInfo(comment?.userId);
         setChannel(channelRes);
       } catch (error) {};
     };
@@ -21,13 +21,13 @@ const VideoComment = ({ comment }) => {
 
   return (
     <Container>
-        <Avatar src={ channel.img || UserDefaultImg } />
+        <Avatar src={ channel?.img || UserDefaultImg } />
         <Details>
             <Name>
-                { channel.username } <Date>{ format(comment.createdAt) }</Date>
+                { channel?.username } <Date>{ format(comment?.createdAt) }</Date>
             </Name>
             <Text>
-              { comment.userComment }
+              { comment?.userComment }
             </Text>
         </Details>
     </Container>
