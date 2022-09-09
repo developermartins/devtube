@@ -25,7 +25,7 @@ git clone git@github.com:martsDev/devtube.git
 
 <br />
 
-### Access src directory 📂
+### Access devtube directory 📂
 
 <pre>
 cd devtube
