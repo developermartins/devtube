@@ -108,8 +108,13 @@ const UploadPopUp = ({ setOpen }) => {
                     <Input type="file" accept="image/*" onChange={ e => setImg(e.target.files[0]) } />
                 )
             }
-            <UploadButton onClick={ handleUpload }>Upload</UploadButton>
-        </Wrapper> 
+            <UploadButton
+                disabled={ videoPercentage < 100 && imgPercentage < 100 ? true : false }
+                onClick={ handleUpload }
+            >
+                Upload
+            </UploadButton>
+        </Wrapper>
     </Container>
   );
 };
