@@ -14,6 +14,7 @@ import usePersistedState from './utils/usePersistedState';
 import Search from './pages/Search';
 import Settings from './pages/Settings';
 import Channel from './pages/Channel';
+import UpdateVideo from './pages/UpdateVideo';
 
 const App = () => {
 
@@ -48,6 +49,7 @@ const App = () => {
                   </Route>
                   <Route path="settings" element={ <Settings /> } />
                   <Route path={ `channel/${user}` } element={ <Channel /> } />
+                  <Route path="edit-video" element={ <UpdateVideo /> } />
                 </Route>
               </Routes>
             </Wrapper>

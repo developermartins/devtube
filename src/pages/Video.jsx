@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { dislikeFunction, likeFunction } from '../services/userFeedback';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { fetchVideoById, incrementViews } from '../services/fetchVideos';
 import { fetchChannelInfo } from '../services/fetchChannelInfo';
 import { dislike, fetchSuccess, like } from '../redux/videoSlice';
@@ -131,7 +131,9 @@ const Video = () => {
             </ChannelInfo>
             {
               currentUser?._id === currentVideo?.userId ?
-              <UpdateVideo>Update video</UpdateVideo> :
+              <Link to="edit-video">
+                <UpdateVideo>Update video</UpdateVideo>
+              </Link> :
               <SubscribeButon onClick={ handleSubscription }>{ 
                 currentUser?.subscribedUsers?.includes(channel?._id) ? "SUBSCRIBED" : "SUBSCRIBE" 
               }</SubscribeButon>
