@@ -23,8 +23,6 @@ const App = () => {
   const { currentUser } = useSelector(state => state.user);
   const { currentVideo } = useSelector((state) => state.video);
 
-  console.log(currentVideo._id)
-
   const user = currentUser?.username?.replace(/\s/g, '');
 
   const toggleTheme = () => {
