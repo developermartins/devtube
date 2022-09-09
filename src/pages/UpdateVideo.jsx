@@ -19,7 +19,7 @@ const UpdateVideo = () => {
 
     //     const fetchVideo = async () => {
     //         const currentVideo = await fetchVideoById(path.toString());
-    //         setVideo(currentVideo);
+    //         setVideo(currentVideo); 
     //     };
     //     fetchVideo();
     // }, []);
