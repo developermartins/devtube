@@ -1,7 +1,7 @@
 # Wellcome to DevTube client repository!▶️
 <br />
 
-<img src="https://photos.app.goo.gl/xvhkyPbKwdiRJivKA" />
+<img src="https://i.ibb.co/Pxkq9cK/2.jpg" />
 
 <br />
 
