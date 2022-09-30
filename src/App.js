@@ -50,7 +50,7 @@ const App = () => {
                   </Route>
                   <Route path="settings" element={ <Settings /> } />
                   <Route path={ `channel/${user}` } element={ <Channel /> } />
-                  <Route path={`edit-video/${currentVideo._id}`} element={ <UpdateVideo /> } />
+                  <Route path={`edit-video/${currentVideo?._id}`} element={ <UpdateVideo /> } />
                 </Route>
               </Routes>
             </Wrapper>
