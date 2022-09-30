@@ -51,3 +51,5 @@ Look the env.example inside the project directory.
 <pre>
 npm start
 </pre>
+
+<p align="center">Developed by Lucas</p>
